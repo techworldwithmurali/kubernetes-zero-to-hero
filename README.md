@@ -132,38 +132,114 @@
 - Understand the concept of deployments in Kubernetes.
 - Learn how to create and manage deployments.
 
-### Steps:
+Here is an example of a Kubernetes Deployment using a declarative YAML format:
 
-1. **Create a Deployment:**
-   - Use the `nginx-deployment.yaml` file created in the previous session.
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+```
 
-2. **Scale the Deployment:**
+### Explanation:
+
+- **apiVersion**: Specifies the API version for the deployment. For Deployments, it's usually `apps/v1`.
+- **kind**: Specifies the type of resource. In this case, it's a `Deployment`.
+- **metadata**: Provides metadata about the deployment, including the `name` and `labels`.
+- **spec**: The specification of the deployment.
+  - **replicas**: Defines the number of pod replicas to run.
+  - **selector**: Defines how the deployment finds which Pods to manage based on labels.
+    - **matchLabels**: Specifies the label selector to match the Pods.
+  - **template**: Describes the Pods that will be created by the deployment.
+    - **metadata**: Specifies the labels for the Pods.
+    - **spec**: Defines the container specifications for the Pods.
+      - **containers**: Specifies the list of containers in the Pod.
+        - **name**: The name of the container.
+        - **image**: The container image to run.
+        - **ports**: The ports that the container will expose.
+
+### Applying the Deployment:
+
+1. Save the above YAML content to a file named `nginx-deployment.yaml`.
+2. Apply the deployment using `kubectl`:
+
    ```bash
-   kubectl scale deployment nginx-deployment --replicas=5
+   kubectl apply -f nginx-deployment.yaml
    ```
 
-3. **Verify Scaling:**
+### Verifying the Deployment:
+
+- Check the status of the deployment:
+
+  ```bash
+  kubectl get deployments
+  ```
+
+- Describe the deployment to see detailed information:
+
+  ```bash
+  kubectl describe deployment nginx-deployment
+  ```
+
+- List the Pods created by the deployment:
+
+  ```bash
+  kubectl get pods
+  ```
+
+### Updating the Deployment:
+
+To update the deployment, you can modify the `nginx-deployment.yaml` file. For example, change the image version:
+
+```yaml
+image: nginx:1.16.0
+```
+
+Then, apply the changes:
+
+```bash
+kubectl apply -f nginx-deployment.yaml
+```
+To delete a Kubernetes deployment, you can use the `kubectl delete` command. Here is how you can delete the `nginx-deployment` we created earlier.
+
+1. **Delete the Deployment using `kubectl`**:
+
+   ```bash
+   kubectl delete -f nginx-deployment.yaml
+   ```
+
+   This command will delete the deployment defined in the `nginx-deployment.yaml` file.
+
+2. **Alternatively, Delete the Deployment by Name**:
+
+   ```bash
+   kubectl delete deployment nginx-deployment
+   ```
+
+   This command will delete the deployment with the name `nginx-deployment`.
+
+3. **Verify the Deletion**:
+
    ```bash
    kubectl get deployments
-   kubectl get pods
    ```
-
-4. **Update the Deployment:**
-   - Edit `nginx-deployment.yaml` to use a different image version:
-     ```yaml
-     image: nginx:1.16.0
-     ```
-   - Apply the update:
-     ```bash
-     kubectl apply -f nginx-deployment.yaml
-     ```
-
-5. **Verify Update:**
-   ```bash
-   kubectl rollout status deployment/nginx-deployment
-   ```
-
----
 
 ## Lab Session 5: Updating and Rolling Back Deployments
 
