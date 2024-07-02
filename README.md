@@ -1,7 +1,7 @@
 # Setting up AWS EKS
 
 **Author**: Moole Muralidhara Reddy  
-**Email**: telugudevopsguru@gmail.com  
+**Email**: techworldwithmurali@gmail.com  
 **Website**: [https://www.techworldwithmurali.com/](https://www.techworldwithmurali.com/)  
 **Description**: Setting up AWS EKS  
 
