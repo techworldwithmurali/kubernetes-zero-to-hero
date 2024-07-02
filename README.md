@@ -1,159 +1,127 @@
-### What are Kubernetes Services?
+### Introduction to Kubernetes ConfigMaps
 
-In Kubernetes, Services are an abstraction layer that defines a logical set of Pods and a policy by which to access them. They enable network access to a set of Pods, providing a stable endpoint for communication within the Kubernetes cluster.
+**Kubernetes ConfigMaps** are Kubernetes objects used to store configuration data in key-value pairs, files, or as plain text. They allow you to separate configuration from your containerized applications, making it easier to manage and update configuration settings without rebuilding container images.
 
-### Types of Kubernetes Services:
-
-1. **ClusterIP**:
-   - Exposes the Service on an internal IP address accessible only within the cluster.
-   - Default type when not specified explicitly.
-
-2. **NodePort**:
-   - Exposes the Service on each Node's IP at a static port.
-   - Makes the Service accessible from outside the cluster using `<NodeIP>:<NodePort>`.
-
-3. **LoadBalancer**:
-   - Creates an external load balancer in the cloud provider's network (if supported).
-   - Routes external traffic to the Service.
-
-4. **ExternalName**:
-   - Maps a Service to a DNS name.
-   - Used for integrating with external services via DNS.
-
-### What is ClusterIP?
-
-- **ClusterIP** is the default Kubernetes Service type.
-- It assigns a stable IP address to the Service within the cluster.
-- The Service is accessible only from within the Kubernetes cluster.
-
-### Lab Session: ClusterIP
+### Lab Session: Kubernetes ConfigMaps
 
 #### Objectives:
-- Learn how to create a Kubernetes Service of type ClusterIP.
+- Learn how to create and use Kubernetes ConfigMaps.
 
 #### Steps:
 
-1. **Create a Deployment:**
-   - Create a deployment YAML file, e.g., `nginx-deployment.yaml`, to deploy a sample application (e.g., Nginx).
-   - Apply the deployment:
-     ```bash
-     kubectl apply -f nginx-deployment.yaml
-     ```
-
-2. **Create a ClusterIP Service YAML:**
-   - Create a file named `nginx-service.yaml` with the following content:
+1. **Create a ConfigMap YAML:**
+   - Create a file named `my-configmap.yaml` with the following content:
      ```yaml
      apiVersion: v1
-     kind: Service
+     kind: ConfigMap
      metadata:
-       name: nginx-service
+       name: my-configmap
+     data:
+       key1: value1
+       key2: value2
+     ```
+   - This creates a ConfigMap named `my-configmap` with two key-value pairs (`key1: value1` and `key2: value2`).
+
+2. **Apply the ConfigMap:**
+   ```bash
+   kubectl apply -f my-configmap.yaml
+   ```
+
+3. **Verify ConfigMap Creation:**
+   ```bash
+   kubectl get configmaps
+   kubectl describe configmap my-configmap
+   ```
+
+4. **Access ConfigMap Data from Pod:**
+   - Mount ConfigMap data as environment variables or volumes in a Pod.
+   - Example of using ConfigMap data in a Pod spec:
+     ```yaml
+     apiVersion: v1
+     kind: Pod
+     metadata:
+       name: my-pod
      spec:
-       type: ClusterIP
-       selector:
-         app: nginx
-       ports:
-         - protocol: TCP
-           port: 80
-           targetPort: 80
+       containers:
+       - name: my-container
+         image: nginx
+         env:
+         - name: KEY1
+           valueFrom:
+             configMapKeyRef:
+               name: my-configmap
+               key: key1
      ```
 
-3. **Apply the ClusterIP Service:**
-   ```bash
-   kubectl apply -f nginx-service.yaml
-   ```
-
-4. **Verify Service Creation:**
-   ```bash
-   kubectl get services
-   ```
-
-5. **Access the Service Within the Cluster:**
-   - Use the ClusterIP to access the deployed application:
+5. **Access ConfigMap Data from CLI:**
+   - Retrieve specific data from ConfigMap:
      ```bash
-     curl http://nginx-service:80
+     kubectl get configmap my-configmap -o jsonpath='{.data.key1}'
      ```
 
-### Lab Session: NodePort
+### Introduction to Kubernetes Secrets
+
+**Kubernetes Secrets** are Kubernetes objects used to store sensitive information, such as passwords, OAuth tokens, and SSH keys, in a secure manner. They are encoded in Base64 by default but can be encrypted for further security.
+
+### Lab Session: Kubernetes Secrets
 
 #### Objectives:
-- Learn how to create a Kubernetes Service of type NodePort.
+- Learn how to create and use Kubernetes Secrets.
 
 #### Steps:
 
-1. **Create a NodePort Service YAML:**
-   - Create a file named `nginx-nodeport-service.yaml` with the following content:
+1. **Create a Secret YAML:**
+   - Create a file named `my-secret.yaml` with the following content:
      ```yaml
      apiVersion: v1
-     kind: Service
+     kind: Secret
      metadata:
-       name: nginx-nodeport-service
-     spec:
-       type: NodePort
-       selector:
-         app: nginx
-       ports:
-         - protocol: TCP
-           port: 80
-           targetPort: 80
+       name: my-secret
+     type: Opaque
+     data:
+       username: YWRtaW4=   # Base64 encoded 'admin'
+       password: MWYyZDFlMmU2N2Rm
      ```
+   - This creates a Secret named `my-secret` with two key-value pairs (`username` and `password`).
 
-2. **Apply the NodePort Service:**
+2. **Apply the Secret:**
    ```bash
-   kubectl apply -f nginx-nodeport-service.yaml
+   kubectl apply -f my-secret.yaml
    ```
 
-3. **Verify Service Creation:**
+3. **Verify Secret Creation:**
    ```bash
-   kubectl get services
+   kubectl get secrets
+   kubectl describe secret my-secret
    ```
 
-4. **Access the Service Using NodePort:**
-   - Get the NodePort allocated (let's assume `NodePort: 30080`):
-     ```bash
-     kubectl get services nginx-nodeport-service
-     ```
-   - Access the service from outside the cluster using `<NodeIP>:30080`.
-
-### Lab Session: Load Balancer
-
-#### Objectives:
-- Learn how to create a Kubernetes Service of type LoadBalancer.
-
-#### Steps:
-
-1. **Create a LoadBalancer Service YAML:**
-   - Create a file named `nginx-loadbalancer-service.yaml` with the following content:
+4. **Access Secret Data from Pod:**
+   - Mount Secret data as environment variables or volumes in a Pod.
+   - Example of using Secret data in a Pod spec:
      ```yaml
      apiVersion: v1
-     kind: Service
+     kind: Pod
      metadata:
-       name: nginx-loadbalancer-service
+       name: my-pod
      spec:
-       type: LoadBalancer
-       selector:
-         app: nginx
-       ports:
-         - protocol: TCP
-           port: 80
-           targetPort: 80
+       containers:
+       - name: my-container
+         image: nginx
+         env:
+         - name: DB_USERNAME
+           valueFrom:
+             secretKeyRef:
+               name: my-secret
+               key: username
+         - name: DB_PASSWORD
+           valueFrom:
+             secretKeyRef:
+               name: my-secret
+               key: password
      ```
 
-2. **Apply the LoadBalancer Service:**
-   ```bash
-   kubectl apply -f nginx-loadbalancer-service.yaml
-   ```
-
-3. **Verify Service Creation:**
-   ```bash
-   kubectl get services
-   ```
-
-4. **Get the External IP Address (if applicable):**
-   - Depending on your cloud provider, the external IP will be allocated.
-   - Get the external IP using:
+5. **Access Secret Data from CLI:**
+   - Retrieve specific data from Secret:
      ```bash
-     kubectl get services nginx-loadbalancer-service
+     kubectl get secret my-secret -o jsonpath='{.data.username}' | base64 --decode
      ```
-
-5. **Access the Service via Load Balancer:**
-   - Use the external IP to access the deployed application.
