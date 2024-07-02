@@ -66,4 +66,4 @@ Follow the deployment instructions for the Cluster Autoscaler.
 
 ## Step 7: Create an Nginx deployment to test the functionality of the Cluster Autoscaler
 
-Create an Nginx deployment and Horizontal Pod Autoscaler (HPA) to observe autoscaling behavior.
+Create an Nginx deployment to test the functionality of the Cluster Autoscaler.
