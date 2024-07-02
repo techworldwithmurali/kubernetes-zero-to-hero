@@ -113,3 +113,121 @@ spec:
    ls /usr/share/nginx/html
    ```
 
+### What is Storage Classes
+
+Storage Classes in Kubernetes provide a way to describe the "classes" of storage that are offered by a cluster. Different classes might map to quality-of-service levels, backup policies, or arbitrary policies determined by the cluster administrators. Storage Classes allow for dynamic provisioning of Persistent Volumes (PVs) so that you don't need to manually create PVs beforehand.
+
+Key concepts related to Storage Classes:
+- **Provisioner**: Determines the type of backend storage provisioner (e.g., AWS EBS, GCE PD, etc.).
+- **Parameters**: Specific parameters required by the provisioner to create volumes.
+- **Reclaim Policy**: Determines what happens to the persistent volume when it is released from its claim.
+- **Volume Binding Mode**: Controls when volume binding and dynamic provisioning should occur (Immediate or WaitForFirstConsumer).
+
+### Lab Session - Storage Classes
+
+### Step 1: Create a Storage Class
+First, create a Storage Class manifest file named storage-class.yaml.
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: standard
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+  fsType: ext4
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+```
+
+Apply the Storage Class:
+```bash
+kubectl apply -f storage-class.yaml
+```
+
+#### Step 2: Define the Persistent Volume Claim (PVC)
+
+Create a PVC manifest file named `pvc-with-sc.yaml`:
+
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: standard
+```
+
+Apply the PVC:
+```bash
+kubectl apply -f pvc-with-sc.yaml
+```
+
+#### Step 3: Define the Deployment
+
+Create a Deployment manifest file named `deployment-with-pvc.yaml`:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: storage
+      volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: my-pvc
+```
+
+#### Step 4: Apply the Deployment
+
+Apply the Deployment:
+```bash
+kubectl apply -f deployment-with-pvc.yaml
+```
+
+#### Step 5: Verify the Deployment and PVC
+
+Check the status of the Deployment and PVC:
+```bash
+kubectl get deployments
+kubectl get pods
+kubectl get pvc
+```
+
+#### Step 6: Verify the Volume is Mounted
+
+Verify that the volume is correctly mounted inside one of the Pods:
+```bash
+kubectl get pods
+kubectl exec -it <pod-name> -- /bin/bash
+ls /usr/share/nginx/html
+```
+
+### Summary
+- **Storage Class**: Defines the characteristics and provisioner for storage.
+- **PVC**: Requests storage dynamically provisioned by the Storage Class.
+- **Deployment**: Uses the PVC to mount the dynamically provisioned storage in the Pods.
