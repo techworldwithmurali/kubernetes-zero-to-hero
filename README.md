@@ -74,17 +74,17 @@ Namespaces provide a way to manage complex Kubernetes clusters by organizing and
    kubectl delete namespace dev
    ```
 
-5. **Create the Namespace Using `kubectl` Command:**
+**Create the Namespace Using `kubectl` Command:**
    ```bash
    kubectl create namespace dev
    ```
 
-6. **Verify Namespace Creation:**
+. **Verify Namespace Creation:**
    ```bash
    kubectl get namespaces
    ```
 
-7. **Delete the Namespace Using `kubectl` Command:**
+ **Delete the Namespace Using `kubectl` Command:**
    ```bash
    kubectl delete namespace dev
    ```
