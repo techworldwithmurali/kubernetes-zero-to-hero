@@ -119,11 +119,22 @@ Some common use cases for Secrets in Kubernetes include:
 
 # Kubernetes Secret Types
 
-When working with Secrets in Kubernetes, the `type` field of the Secret resource allows you to specify how the Secret data should be handled programmatically. This type determines the structure and constraints of the Secret, influencing how Kubernetes validates and manages its contents.
+In Kubernetes, the type field of the Secret resource specifies the format and intended use of the Secret's data. This field influences how Kubernetes manages and validates the Secret's contents. 
 
 ## Built-in Secret Types
 
 Kubernetes offers various built-in types tailored for different usage scenarios. Each type comes with its own set of validations and configurations to ensure secure handling of sensitive information.
+
+| Built-in Type                        | Usage                                      |
+|--------------------------------------|--------------------------------------------|
+| Opaque                               | arbitrary user-defined data                |
+| kubernetes.io/service-account-token | ServiceAccount token                       |
+| kubernetes.io/dockercfg              | serialized ~/.dockercfg file               |
+| kubernetes.io/dockerconfigjson       | serialized ~/.docker/config.json file      |
+| kubernetes.io/basic-auth             | credentials for basic authentication      |
+| kubernetes.io/ssh-auth               | credentials for SSH authentication        |
+| kubernetes.io/tls                    | data for a TLS client or server            |
+| bootstrap.kubernetes.io/token        | bootstrap token data                       |
 
 ### Opaque
 
