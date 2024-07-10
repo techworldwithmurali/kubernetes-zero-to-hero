@@ -40,7 +40,7 @@ data:
 
 4. **Access ConfigMap Data from Pod:**
    - Mount ConfigMap data as environment variables or volumes in a Pod.
-   - Example of using ConfigMap data in a Pod spec:
+   - Example of using ConfigMap data in a Deployment  spec:
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
