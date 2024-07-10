@@ -239,7 +239,7 @@ apiVersion: v1
 kind: LimitRange
 metadata:
   name: my-limit-range
-  namespace: my-namespace
+  namespace: dev
 spec:
   limits:
   - max:
