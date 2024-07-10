@@ -1,6 +1,8 @@
 ### What is a Kubernetes Namespace?
 
-Kubernetes Namespace is a mechanism to divide cluster resources between multiple users or teams. It provides a way to create isolated environments within the same cluster, ensuring that resources do not conflict with each other and can be managed independently. Namespaces are especially useful in environments where multiple teams or projects share a single Kubernetes cluster.
+- Kubernetes Namespace is a mechanism to divide cluster resources between multiple users or teams.
+- It provides a way to create isolated environments within the same cluster, ensuring that resources do not conflict with each other and can be managed independently.
+- Namespaces are especially useful in environments where multiple teams or projects share a single Kubernetes cluster.
 
 ### Lab Session: Creating and Deleting Kubernetes Namespace
 
