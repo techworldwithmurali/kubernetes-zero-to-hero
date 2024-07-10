@@ -54,6 +54,8 @@ Kubernetes addresses the challenges associated with deploying and scaling contai
   - **Container Runtime**: Software responsible for running containers (e.g., Docker, containerd).
 
 ### Kubernetes Objects:
+![Kubernetes Objects - Tech World with Murali - Moole Muralidhara Reddy.png](https://github.com/techworldwithmurali/kubernetes-zero-to-hero/blob/main/Day-1/images/Kubernetes%20Objects%20-%20Tech%20World%20with%20Murali%20-%20Moole%20Muralidhara%20Reddy.png)
+
 - **Pods**: Smallest deployable units in Kubernetes, consisting of one or more containers.
 - **Services**: Abstraction that defines a logical set of pods and a policy for accessing them.
 - **Deployments**: Defines desired state for pods and manages rolling updates and rollbacks.
