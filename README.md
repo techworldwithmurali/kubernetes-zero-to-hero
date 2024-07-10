@@ -157,20 +157,24 @@ spec:
 
 1. **Create a LoadBalancer Service YAML:**
    - Create a file named `nginx-loadbalancer-service.yaml` with the following content:
-     ```yaml
-     apiVersion: v1
-     kind: Service
-     metadata:
-       name: nginx-loadbalancer-service
-     spec:
-       type: LoadBalancer
-       selector:
-         app: nginx
-       ports:
-         - protocol: TCP
-           port: 80
-           targetPort: 80
-     ```
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+  namespace: dev
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-028dc499437b2b83f,subnet-0f349567f5fec79de
+spec:
+  selector:
+    app: my-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+
+```
 
 2. **Apply the LoadBalancer Service:**
    ```bash
