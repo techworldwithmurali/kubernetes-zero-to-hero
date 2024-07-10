@@ -112,7 +112,8 @@ spec:
     targetPort: 80
     nodePort: 32500
   type: NodePort
-     ```
+
+```
 
 2. **Apply the NodePort Service:**
    ```bash
