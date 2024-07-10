@@ -21,7 +21,6 @@
 ## Resources
 
 - [Kubernetes Official Documentation](https://kubernetes.io/docs/)
-- [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/)
 
 ## Why Kubernetes?
 
