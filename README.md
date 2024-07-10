@@ -97,13 +97,6 @@ StatefulSets in Kubernetes are ideal for managing stateful applications that req
 
 6. **Custom Applications**:
    Any custom application with stateful requirements can leverage StatefulSets to manage its pods with stable network identities and persistent storage.
-```
-
-### Use Cases for StatefulSets
-
-- **Databases**: Deploy stateful applications like MySQL, PostgreSQL, etc.
-- **Distributed Systems**: Applications that require stable identity and persistent storage, like Apache Kafka or Cassandra.
-- **Leader Election**: Applications that need to maintain leader-election among members.
 
 ### Lab Session: Kubernetes StatefulSets
 
@@ -113,7 +106,7 @@ StatefulSets in Kubernetes are ideal for managing stateful applications that req
 #### Steps:
 
 1. **Create a StatefulSet YAML File**:
-   - Create a file named `web-statefulset.yaml` with the following content:
+   - Create a file named `statefulset.yaml` with the following content:
      ```yaml
      apiVersion: apps/v1
      kind: StatefulSet
