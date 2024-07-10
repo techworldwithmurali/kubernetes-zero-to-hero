@@ -12,15 +12,17 @@
 
 1. **Create a ConfigMap YAML:**
    - Create a file named `my-configmap.yaml` with the following content:
-     ```yaml
-     apiVersion: v1
-     kind: ConfigMap
-     metadata:
-       name: my-configmap
-     data:
-       key1: value1
-       key2: value2
-     ```
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+  namespace: dev
+data:
+  DATABASE_URL: "mydatabase.nsvvbnnsnggsnbbn.us-west-2.rds.amazonaws.com"
+  API_KEY: "jhgdjhhj5dsd2d325ad355da535da23543da35ad"
+
+```
    - This creates a ConfigMap named `my-configmap` with two key-value pairs (`key1: value1` and `key2: value2`).
 
 2. **Apply the ConfigMap:**
@@ -37,22 +39,30 @@
 4. **Access ConfigMap Data from Pod:**
    - Mount ConfigMap data as environment variables or volumes in a Pod.
    - Example of using ConfigMap data in a Pod spec:
-     ```yaml
-     apiVersion: v1
-     kind: Pod
-     metadata:
-       name: my-pod
-     spec:
-       containers:
-       - name: my-container
-         image: nginx
-         env:
-         - name: KEY1
-           valueFrom:
-             configMapKeyRef:
-               name: my-configmap
-               key: key1
-     ```
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+  namespace: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-app-container
+        image: nginx:latest
+        envFrom:
+          - configMapRef:
+              name: my-config
+
+```
 
 5. **Access ConfigMap Data from CLI:**
    - Retrieve specific data from ConfigMap:
