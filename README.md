@@ -1,4 +1,4 @@
-### Introduction to Kubernetes ConfigMaps
+### What is Kubernetes ConfigMaps
 
 - **Kubernetes ConfigMaps** are Kubernetes objects used to store configuration data in key-value pairs, files, or as plain text.
 - They allow you to separate configuration from your containerized applications, making it easier to manage and update configuration settings without rebuilding container images.
