@@ -18,51 +18,33 @@
 #### Steps:
 
 1. **Create a DaemonSet YAML File**:
-   - Create a file named `fluentd-daemonset.yaml` with the following content:
-     ```yaml
-     apiVersion: apps/v1
-     kind: DaemonSet
-     metadata:
-       name: fluentd
-       labels:
-         app: fluentd
-     spec:
-       selector:
-         matchLabels:
-           name: fluentd
-       template:
-         metadata:
-           labels:
-             name: fluentd
-         spec:
-           containers:
-           - name: fluentd
-             image: fluent/fluentd:v1.9.1-1.0
-             resources:
-               limits:
-                 memory: "200Mi"
-                 cpu: "100m"
-               requests:
-                 memory: "200Mi"
-                 cpu: "100m"
-             volumeMounts:
-             - name: varlog
-               mountPath: /var/log
-             - name: varlibdockercontainers
-               mountPath: /var/lib/docker/containers
-               readOnly: true
-           volumes:
-           - name: varlog
-             hostPath:
-               path: /var/log
-           - name: varlibdockercontainers
-             hostPath:
-               path: /var/lib/docker/containers
-     ```
+   - Create a file named `daemonset.yaml` with the following content:
+```yaml
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nginx-daemonset
+  labels:
+    app: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+ ```
 
 2. **Apply the DaemonSet**:
    ```bash
-   kubectl apply -f fluentd-daemonset.yaml
+   kubectl apply -f daemonset.yaml
    ```
 
 3. **Verify DaemonSet Deployment**:
@@ -79,7 +61,7 @@
 
 1. **Delete the DaemonSet**:
    ```bash
-   kubectl delete -f fluentd-daemonset.yaml
+   kubectl delete -f daemonset.yaml
    ```
 
 2. **Verify Deletion**:
