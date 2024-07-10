@@ -184,7 +184,9 @@ In this example, `apiVersion: v1` specifies that the Pod resource is using the s
 
 ## What is a Kubernetes Deployment?
 
-A Kubernetes Deployment is a resource object in Kubernetes that provides declarative updates to applications. It describes the desired state for your application and manages the deployment and scaling of pods. Deployments make it easy to roll out updates to applications and ensure that the desired number of pod replicas are running at any given time.
+- A Kubernetes Deployment is a resource object in Kubernetes that provides declarative updates to applications.
+- It describes the desired state for your application and manages the deployment and scaling of pods.
+- Deployments make it easy to roll out updates to applications and ensure that the desired number of pod replicas are running at any given time.
 
 ## Key Features
 
