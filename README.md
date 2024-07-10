@@ -92,7 +92,44 @@ spec:
 
 ### Introduction to Kubernetes Secrets
 
-**Kubernetes Secrets** are Kubernetes objects used to store sensitive information, such as passwords, OAuth tokens, and SSH keys, in a secure manner. They are encoded in Base64 by default but can be encrypted for further security.
+- **Kubernetes Secrets** are Kubernetes objects used to store sensitive information, such as passwords, OAuth tokens, and SSH keys, in a secure manner.
+- They are encoded in Base64 by default but can be encrypted for further security.
+
+### Key Features
+
+1. **Encryption**:
+   - Secrets are encoded in Base64 but can be encrypted at rest when stored in etcd (the key-value store used by Kubernetes) to enhance security.
+
+2. **Access Control**:
+   - Secrets can be tightly controlled with Kubernetes RBAC (Role-Based Access Control), ensuring that only authorized users and pods can access them.
+
+3. **Separation from Code**:
+   - Secrets allow sensitive information to be managed separately from application code, providing better security and flexibility.
+
+
+> **Note**: The values in the `data` field are Base64-encoded. You can encode a string to Base64 using the `echo -n 'your-string' | base64` command.
+
+Some common use cases for Secrets in Kubernetes include:
+
+- Storing database credentials
+- Holding API keys or tokens
+- Encrypting sensitive data
+- Storing SSL/TLS certificates
+- Managing service account credentials
+
+### Accessing Secret Data
+
+There are several ways to use Secret data within your pods:
+
+1. **Environment Variables**:
+   - You can expose Secret values as environment variables in a pod.
+
+2. **Volume Mounts**:
+   - You can mount Secret data as files within a pod.
+
+3. **Command-line Arguments**:
+   - You can pass Secret values as command-line arguments to your container.
+
 
 ### Lab Session: Kubernetes Secrets
 
