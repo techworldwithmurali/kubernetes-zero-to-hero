@@ -191,16 +191,18 @@ There are several ways to use Secret data within your pods:
 
 1. **Create a Secret YAML:**
    - Create a file named `my-secret.yaml` with the following content:
-     ```yaml
-     apiVersion: v1
-     kind: Secret
-     metadata:
-       name: my-secret
-     type: Opaque
-     data:
-       username: YWRtaW4=   # Base64 encoded 'admin'
-       password: MWYyZDFlMmU2N2Rm
-     ```
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: myapp-secret
+  namespace: dev
+type: Opaque
+data:
+  username: bXl1c2Vy      # base64-encoded "myuser"
+  password: bXlwYXNzd29yZA==  # base64-encoded "mypassword"
+
+ ```
    - This creates a Secret named `my-secret` with two key-value pairs (`username` and `password`).
 
 2. **Apply the Secret:**
@@ -216,25 +218,36 @@ There are several ways to use Secret data within your pods:
 
 4. **Access Secret Data from Pod:**
    - Mount Secret data as environment variables or volumes in a Pod.
-   - Example of using Secret data in a Pod spec:
+   - Example of using Secret data in a Deployment spec:
      ```yaml
-     apiVersion: v1
-     kind: Pod
-     metadata:
-       name: my-pod
-     spec:
-       containers:
-       - name: my-container
-         image: nginx
-         env:
-         - name: DB_USERNAME
-           valueFrom:
-             secretKeyRef:
-               name: my-secret
-               key: username
-         - name: DB_PASSWORD
-           valueFrom:
-             secretKeyRef:
-               name: my-secret
-               key: password
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  namespace: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp-container
+        image: nginx:latest
+        env:
+        - name: MY_APP_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: myapp-secret
+              key: username
+        - name: MY_APP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: myapp-secret
+              key: password
+
      ```
