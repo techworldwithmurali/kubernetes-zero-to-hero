@@ -238,7 +238,7 @@ Here's an example of a LimitRange YAML configuration:
 apiVersion: v1
 kind: LimitRange
 metadata:
-  name: my-limit-range
+  name: limit-range
   namespace: dev
 spec:
   limits:
