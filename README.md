@@ -133,7 +133,8 @@ spec:
    - Access the service from outside the cluster using `<NodeIP>:30080`.
 
 # LoadBalancer
-In Kubernetes, a **LoadBalancer** is a type of Service that automatically provisions and manages an external load balancer for routing external traffic to the pods within the cluster. This type of service abstracts the complexity of external load balancing and integrates it seamlessly with Kubernetes.
+- In Kubernetes, a **LoadBalancer** is a type of Service that automatically provisions and manages an external load balancer for routing external traffic to the pods within the cluster.
+- This type of service abstracts the complexity of external load balancing and integrates it seamlessly with Kubernetes.
 
 ### Key Concepts
 
