@@ -77,16 +77,23 @@ Kubernetes addresses the challenges associated with deploying and scaling contai
 ## cloud-controller-manager
 
 - **Description**: When running Kubernetes on AWS using Amazon Elastic Kubernetes Service (EKS), the cloud-controller-manager interacts with AWS services to manage various resources and functionalities.
-```
-- **Master Node**: Controls and manages the Kubernetes cluster.
-  - **kube-apiserver**: Exposes the Kubernetes API.
-  - **etcd**: Consistent and highly-available key-value store for cluster data.
-  - **kube-scheduler**: Assigns nodes to newly created pods.
-  - **kube-controller-manager**: Runs controller processes that regulate the state of the cluster.
-- **Worker Nodes**: Host applications deployed in Kubernetes.
-  - **kubelet**: Agent running on each node, responsible for communication with the master node.
-  - **kube-proxy**: Network proxy that maintains network rules and load balancing.
-  - **Container Runtime**: Software responsible for running containers (e.g., Docker, containerd).
+
+# Node Components
+
+## Kubelet
+
+- **Description**: Kubelet is an agent that runs on each node and is responsible for ensuring that containers are running in a pod.
+- **Example**: If a pod definition specifies a container to run, Kubelet makes sure that the container is started and running on the node.
+
+## Kube Proxy
+
+- **Description**: Kube Proxy is responsible for network routing and load balancing within the cluster. It maintains network rules on each node.
+- **Example**: If you create a Service resource, Kube Proxy ensures that traffic is correctly routed to the appropriate pods.
+
+## Container Runtime
+
+- **Description**: A container runtime, such as Docker or containerd, is responsible for running containers in pods.
+- **Example**: When you specify a Docker image in a pod definition, the container runtime downloads and runs that image.
 
 ### Kubernetes Objects:
 ![Kubernetes Objects - Tech World with Murali - Moole Muralidhara Reddy.png](https://github.com/techworldwithmurali/kubernetes-zero-to-hero/blob/main/Day-1/images/Kubernetes%20Objects%20-%20Tech%20World%20with%20Murali%20-%20Moole%20Muralidhara%20Reddy.png)
