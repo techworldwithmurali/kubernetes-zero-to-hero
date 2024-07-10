@@ -168,25 +168,6 @@ For TLS certificates and related data used in secure communication between compo
 
 This type is used for storing bootstrap tokens, which are used during the bootstrap process of a Kubernetes cluster. It's essential for securely managing initial access and authentication tokens.
 
-
-# Types of Secret
-
-When creating a Secret in Kubernetes, you can specify its type using the `type` field of the Secret resource, or certain equivalent `kubectl` command line flags (if available). The Secret type is used to facilitate programmatic handling of the Secret data.
-
-Kubernetes provides several built-in types for common usage scenarios. These types vary in terms of the validations performed and the constraints Kubernetes imposes on them.
-
-| Built-in Type                        | Usage                                      |
-|--------------------------------------|--------------------------------------------|
-| Opaque                               | arbitrary user-defined data                |
-| kubernetes.io/service-account-token | ServiceAccount token                       |
-| kubernetes.io/dockercfg              | serialized ~/.dockercfg file               |
-| kubernetes.io/dockerconfigjson       | serialized ~/.docker/config.json file      |
-| kubernetes.io/basic-auth             | credentials for basic authentication      |
-| kubernetes.io/ssh-auth               | credentials for SSH authentication        |
-| kubernetes.io/tls                    | data for a TLS client or server            |
-| bootstrap.kubernetes.io/token        | bootstrap token data                       |
-
-
 ### Accessing Secret Data
 
 There are several ways to use Secret data within your pods:
