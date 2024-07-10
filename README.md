@@ -80,7 +80,7 @@ spec:
 StatefulSets in Kubernetes are ideal for managing stateful applications that require stable identities and persistent storage. Here are some common use cases:
 
 1. **Databases**:
-   StatefulSets are commonly used to manage databases such as MySQL, PostgreSQL, Cassandra, and MongoDB. Each database pod has its persistent storage volume and a stable network identity.
+  -  StatefulSets are commonly used to manage databases such as MySQL, PostgreSQL, Cassandra, and MongoDB. Each database pod has its persistent storage volume and a stable network identity.
 
 2. **Message Brokers**:
    Message brokers like Apache Kafka or RabbitMQ can benefit from StatefulSets. Pods can be managed with predictable names and storage volumes to ensure data persistence.
