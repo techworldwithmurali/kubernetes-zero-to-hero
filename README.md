@@ -180,6 +180,26 @@ In this example, `apiVersion: v1` specifies that the Pod resource is using the s
    ```
 
 ---
+# Kubernetes Deployment
+
+## What is a Kubernetes Deployment?
+
+A Kubernetes Deployment is a resource object in Kubernetes that provides declarative updates to applications. It describes the desired state for your application and manages the deployment and scaling of pods. Deployments make it easy to roll out updates to applications and ensure that the desired number of pod replicas are running at any given time.
+
+## Key Features
+
+1. **Declarative Updates**: Specify the desired state of your application, and Kubernetes will manage the changes to bring the current state to the desired state.
+2. **Scaling**: Easily scale up or down the number of pod replicas.
+3. **Rollouts**: Perform rolling updates to update pods without downtime.
+4. **Rollbacks**: Revert back to a previous state if something goes wrong during a rollout.
+5. **Self-Healing**: Automatically replaces failed or unhealthy pods.
+
+## Components of a Deployment
+
+1. **Selector**: Defines how to identify the pods that belong to the deployment.
+2. **Template**: Specifies the desired state for the pods, including the container image, environment variables, and other configurations.
+3. **Replicas**: Defines the number of pod replicas to run.
+
 
 ## Lab Session 4: Deployments
 
