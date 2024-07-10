@@ -3,6 +3,30 @@
 - **Kubernetes ConfigMaps** are Kubernetes objects used to store configuration data in key-value pairs, files, or as plain text.
 - They allow you to separate configuration from your containerized applications, making it easier to manage and update configuration settings without rebuilding container images.
 
+### Key Features
+
+1. **Decoupling Configuration from Code**:
+   - ConfigMaps allow you to separate configuration artifacts from image content, enabling configuration changes without rebuilding your application images.
+
+2. **Multiple Usage Scenarios**:
+   - ConfigMaps can be used to store configuration files, command-line arguments, environment variables, and other configuration artifacts.
+
+3. **Flexibility**:
+   - They support a wide range of data types, including plain text, JSON, and even binary data encoded in base64.
+
+### Accessing ConfigMap Data
+
+There are several ways to use ConfigMap data within your pods:
+
+1. **Environment Variables**:
+   - You can expose ConfigMap values as environment variables in a pod.
+
+2. **Volume Mounts**:
+   - You can mount ConfigMap data as files within a pod.
+
+3. **Command-line Arguments**:
+   - You can pass ConfigMap values as command-line arguments to your container.
+
 ### Lab Session: Kubernetes ConfigMaps
 
 #### Objectives:
