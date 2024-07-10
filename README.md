@@ -73,6 +73,19 @@
      ```bash
      curl http://nginx-service:80
      ```
+# What is Node Port 
+A **NodePort** is a type of Kubernetes Service that exposes a service on a specific port on each Node in the cluster, making it accessible from outside the cluster. This allows external traffic to access the service running inside the Kubernetes cluster.
+
+### Key Concepts
+
+- **NodePort Range**: By default, NodePort values range between 30000 and 32767.
+- **Cluster IP**: NodePort services also get a ClusterIP, which allows them to be accessed from within the cluster.
+
+### How NodePort Works
+
+1. **Service Definition**: When you define a service with a `type: NodePort`, Kubernetes allocates a port from the NodePort range (or you can specify one).
+2. **Node Exposure**: Kubernetes makes the service accessible on that port across all nodes in the cluster.
+3. **External Access**: You can access the service from outside the cluster by sending a request to any Node's IP address at the allocated NodePort.
 
 ### Lab Session: NodePort
 
