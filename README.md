@@ -97,7 +97,7 @@
 
 1. **Create a NodePort Service YAML:**
    - Create a file named `nginx-nodeport-service.yaml` with the following content:
-     ```yaml
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
