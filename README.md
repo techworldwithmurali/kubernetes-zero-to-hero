@@ -156,7 +156,127 @@ Resource Quotas are a way to manage the resource consumption of namespaces in Ku
 - **Prevent Resource Exhaustion**: Ensures no single namespace can consume all the resources, preventing denial of service to other namespaces.
 - **Cost Management**: Helps in managing costs by controlling resource usage.
 - **Multi-Tenancy**: Essential for environments with multiple users or teams sharing a single cluster.
+  
+## Example of a Resource Quotas
+```yaml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute-resources
+  namespace: dev
+spec:
+  hard:
+    pods: "10"
+    requests.cpu: "4"
+    requests.memory: "16Gi"
+    limits.cpu: "8"
+    limits.memory: "32Gi"
+```
 
+### Explanation of Fields
+
+- **apiVersion: v1**
+  - Specifies the version of the Kubernetes API.
+
+- **kind: ResourceQuota**
+  - Defines the type of Kubernetes object. In this case, it is a ResourceQuota.
+
+- **metadata**
+  - **name: compute-resources**
+    - The name of the ResourceQuota object.
+  - **namespace: dev**
+    - The namespace to which this ResourceQuota applies.
+
+- **spec**
+  - Contains the specification of the ResourceQuota.
+
+### ResourceQuota Specification (spec)
+
+- **hard**
+  - Specifies the hard limits for resource usage within the namespace. These limits are the maximum allowable usage for various resource types.
+
+#### Resource Constraints
+
+- **pods: "10"**
+  - Limits the total number of pods in the `dev` namespace to 10.
+
+- **requests.cpu: "4"**
+  - Limits the total amount of CPU resources requested by all containers in the `dev` namespace to 4 CPU cores.
+
+- **requests.memory: "16Gi"**
+  - Limits the total amount of memory requested by all containers in the `dev` namespace to 16 GiB.
+
+- **limits.cpu: "8"**
+  - Limits the total amount of CPU resources that all containers in the `dev` namespace can use to 8 CPU cores.
+
+- **limits.memory: "32Gi"**
+  - Limits the total amount of memory that all containers in the `dev` namespace can use to 32 GiB.
+
+### How ResourceQuota Works
+
+When a ResourceQuota is applied to a namespace, it enforces the defined resource limits and ensures that the sum of resource requests and limits across all pods and containers in the namespace does not exceed the specified values. If an attempt is made to create or update a resource (such as a pod) that would exceed these limits, the operation will be denied.
+
+### LimitRange
+In Kubernetes, a **LimitRange** is a resource policy that you can apply to a namespace to enforce constraints on resource usage for containers and pods. LimitRanges are used to specify default resource limits and request values, as well as to set maximum and minimum constraints for resources such as CPU and memory.
+
+## Purpose of LimitRange
+
+- **Enforce Resource Limits**: Ensures that all containers and pods in a namespace have resource limits defined.
+- **Prevent Resource Overcommitment**: Helps avoid situations where a namespace overuses resources, potentially impacting other namespaces.
+- **Set Default Resource Requests and Limits**: Automatically applies default resource requests and limits to containers that do not have them specified.
+
+## Key Concepts
+
+- **Resource Requests**: The amount of CPU and memory guaranteed to a container.
+- **Resource Limits**: The maximum amount of CPU and memory that a container is allowed to use.
+
+## Example of a LimitRange
+
+Here's an example of a LimitRange YAML configuration:
+
+```yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: my-limit-range
+  namespace: my-namespace
+spec:
+  limits:
+  - max:
+      cpu: "2"
+      memory: "1Gi"
+    min:
+      cpu: "200m"
+      memory: "6Mi"
+    default:
+      cpu: "500m"
+      memory: "256Mi"
+    defaultRequest:
+      cpu: "300m"
+      memory: "128Mi"
+    type: Container
+```
+
+### Explanation of the Fields
+
+- **max**: Specifies the maximum amount of resources a container can request.
+  - `cpu: "2"`: The maximum CPU limit is 2 cores.
+  - `memory: "1Gi"`: The maximum memory limit is 1 GiB.
+  
+- **min**: Specifies the minimum amount of resources a container can request.
+  - `cpu: "200m"`: The minimum CPU request is 200 millicores.
+  - `memory: "6Mi"`: The minimum memory request is 6 MiB.
+  
+- **default**: Sets the default resource limits if none are specified for a container.
+  - `cpu: "500m"`: The default CPU limit is 500 millicores.
+  - `memory: "256Mi"`: The default memory limit is 256 MiB.
+  
+- **defaultRequest**: Sets the default resource requests if none are specified for a container.
+  - `cpu: "300m"`: The default CPU request is 300 millicores.
+  - `memory: "128Mi"`: The default memory request is 128 MiB.
+  
+- **type**: Indicates the type of resource to which the limits apply. In this case, it is set to `Container`.
+-----
 ### Resource Quotas vs. LimitRanges
 
 - **Resource Quotas**: 
