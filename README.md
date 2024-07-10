@@ -24,9 +24,8 @@ data:
 
 ```
    - This creates a ConfigMap named my-config with two key-value pairs:
-
-DATABASE_URL: "mydatabase.nsvvbnnsnggsnbbn.us-west-2.rds.amazonaws.com"
-API_KEY: "jhgdjhhj5dsd2d325ad355da535da23543da35ad"
+- DATABASE_URL: "mydatabase.nsvvbnnsnggsnbbn.us-west-2.rds.amazonaws.com"
+- API_KEY: "jhgdjhhj5dsd2d325ad355da535da23543da35ad"
 
 2. **Apply the ConfigMap:**
    ```bash
