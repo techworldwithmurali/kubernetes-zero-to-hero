@@ -98,18 +98,20 @@
 1. **Create a NodePort Service YAML:**
    - Create a file named `nginx-nodeport-service.yaml` with the following content:
      ```yaml
-     apiVersion: v1
-     kind: Service
-     metadata:
-       name: nginx-nodeport-service
-     spec:
-       type: NodePort
-       selector:
-         app: nginx
-       ports:
-         - protocol: TCP
-           port: 80
-           targetPort: 80
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+  namespace: dev
+spec:
+  selector:
+    app: my-app
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 32500
+  type: NodePort
      ```
 
 2. **Apply the NodePort Service:**
