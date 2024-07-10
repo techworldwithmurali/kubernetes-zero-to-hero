@@ -52,6 +52,32 @@ Kubernetes addresses the challenges associated with deploying and scaling contai
 
 ![Kubernetes Architecture - Tech World with Murali - Moole Muralidhara Reddy.png](https://github.com/techworldwithmurali/kubernetes-zero-to-hero/blob/main/Day-1/images/Kubernetes%20Architecture%20-%20Tech%20World%20with%20Murali%20-%20Moole%20Muralidhara%20Reddy.png)
 ### Components of Kubernetes Architecture:
+# Master Node Components
+
+## API Server
+
+- **Description**: The Kubernetes API Server acts as the control plane's frontend and is responsible for processing RESTful API requests, authentication, and authorization.
+- **Role**: It's the entry point for administrators, developers, and other services.
+
+## etcd
+
+- **Description**: etcd is a distributed key-value store that stores the cluster's configuration data. It provides consistency and high availability.
+- **Example**: If you update the number of replicas for a deployment, etcd stores this configuration change.
+
+## Scheduler
+
+- **Description**: The Scheduler is responsible for assigning pods to nodes based on resource requirements and constraints.
+- **Example**: If you create a new pod without specifying a node, the scheduler selects an appropriate node to run it.
+
+## kube-controller-manager
+
+- **Description**: The kube-controller-manager is one of the core components of Kubernetes. It is responsible for running controller processes that regulate the state of the system to achieve the desired state specified by users.
+- **Function**: Controllers are control loops that continuously watch the state of the cluster and make changes to move the current state closer to the desired state.
+
+## cloud-controller-manager
+
+- **Description**: When running Kubernetes on AWS using Amazon Elastic Kubernetes Service (EKS), the cloud-controller-manager interacts with AWS services to manage various resources and functionalities.
+```
 - **Master Node**: Controls and manages the Kubernetes cluster.
   - **kube-apiserver**: Exposes the Kubernetes API.
   - **etcd**: Consistent and highly-available key-value store for cluster data.
