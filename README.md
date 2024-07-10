@@ -1,6 +1,7 @@
-### What are Kubernetes DaemonSets?
+### What is  Kubernetes DaemonSets?
 
-A **Kubernetes DaemonSet** ensures that a copy of a Pod runs on all (or some) nodes in the cluster. When new nodes are added to the cluster, DaemonSets automatically start the Pod on them. When nodes are removed from the cluster, the DaemonSet also removes the Pods running on those nodes.
+- A **Kubernetes DaemonSet** ensures that a copy of a Pod runs on all (or some) nodes in the cluster.
+- When new nodes are added to the cluster, DaemonSets automatically start the Pod on them. When nodes are removed from the cluster, the DaemonSet also removes the Pods running on those nodes.
 
 ### Purpose of DaemonSets
 
