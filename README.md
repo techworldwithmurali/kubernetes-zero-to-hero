@@ -131,9 +131,87 @@ Key concepts related to Storage Classes:
 
 ### Lab Session - Storage Classes
 
-### Step 1: Create a Storage Class
-First, create a Storage Class manifest file named storage-class.yaml.
+Here's the detailed lab session for dynamic provisioning of Persistent Volumes (PV) and Persistent Volume Claims (PVC) using the Amazon EBS CSI driver in an EKS cluster:
 
+## Lab Session: Dynamic Provisioning PV and PVC
+
+### Step 1: Create the OIDC Provider for EKS Cluster
+1. Create the OIDC provider to allow the EKS cluster to communicate with AWS IAM.
+2. Ensure you have the necessary permissions to create the OIDC provider.
+
+```sh
+eksctl utils associate-iam-oidc-provider --region <region> --cluster dev-cluster --approve
+```
+
+### Step 2: Create an IAM Role and Attach the AmazonEBSCSIDriverPolicy Policy
+1. **Create the IAM Role for the Amazon EBS CSI driver**:
+   - Navigate to the IAM console.
+   - Create a new role with the following details:
+     - **Trusted entity**: Web identity
+     - **OIDC provider**: The one you created for your cluster.
+     - **Audience**: `sts.amazonaws.com`
+
+2. **Attach the AmazonEBSCSIDriverPolicy policy**:
+   - Policy ARN: `arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy`
+
+3. **Update the trust relationship**:
+   - Add the following to the trust relationship JSON:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::<account_id>:oidc-provider/oidc.eks.<region>.amazonaws.com/id/<eks_oidc_id>"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "oidc.eks.<region>.amazonaws.com/id/<eks_oidc_id>:sub": "system:serviceaccount:kube-system:ebs-csi-controller-sa"
+        }
+      }
+    }
+  ]
+}
+```
+
+### Step 3: Deploy the Amazon EBS CSI Driver
+1. Use the AWS CLI to deploy the Amazon EBS CSI driver:
+
+```sh
+aws eks create-addon \
+ --cluster-name dev-cluster  \
+ --addon-name aws-ebs-csi-driver \
+ --service-account-role-arn arn:aws:iam::<account_id>:role/AmazonEKS_EBS_CSI_DriverRole
+```
+
+### Step 4: Verify the Installation
+1. Check if the EBS CSI driver is installed successfully:
+
+```sh
+kubectl get all -A | grep csi
+```
+
+### Step 5: Test the Amazon EBS CSI Driver
+You will test the EBS CSI driver using a sample application that dynamically provisions EBS volumes for pods.
+
+1. **Clone the aws-ebs-csi-driver repository**:
+
+```sh
+git clone https://github.com/kubernetes-sigs/aws-ebs-csi-driver.git
+```
+
+2. **Change your working directory**:
+
+```sh
+cd aws-ebs-csi-driver/examples/kubernetes/dynamic-provisioning/
+```
+
+3. **Create the Kubernetes resources for testing**:
+
+### `storage-class.yaml`
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -142,97 +220,95 @@ metadata:
 provisioner: kubernetes.io/aws-ebs
 parameters:
   type: gp2
-  fsType: ext4
-reclaimPolicy: Retain
-volumeBindingMode: Immediate
 ```
 
-Apply the Storage Class:
-```bash
-kubectl apply -f storage-class.yaml
-```
-
-#### Step 2: Define the Persistent Volume Claim (PVC)
-
-Create a PVC manifest file named `pvc-with-sc.yaml`:
-
+### `pvc.yaml`
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: my-pvc
+  namespace: dev
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: standard
   resources:
     requests:
-      storage: 5Gi
-  storageClassName: standard
+      storage: 1Gi
 ```
 
-Apply the PVC:
-```bash
-kubectl apply -f pvc-with-sc.yaml
-```
-
-#### Step 3: Define the Deployment
-
-Create a Deployment manifest file named `deployment-with-pvc.yaml`:
-
+### `deployment.yaml`
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deployment
+  name: my-deployment
+  namespace: dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: app
+      app: my-app
   template:
     metadata:
       labels:
-        app: app
+        app: my-app
     spec:
       containers:
-      - name: app
-        image: centos
-        command: ["/bin/sh"]
-        args: ["-c", "while true; do echo $(date -u) >> /data/out.txt; sleep 5; done"]
+      - name: my-container
+        image: nginx:latest
         volumeMounts:
-        - name: persistent-storage
-          mountPath: /data
+        - mountPath: /data
+          name: my-volume
       volumes:
-      - name: persistent-storage
+      - name: my-volume
         persistentVolumeClaim:
-          claimName: ebs-claim
-
+          claimName: my-pvc
 ```
 
-#### Step 4: Apply the Deployment
+### Applying the YAML Files
+1. **Create the StorageClass**:
+   ```sh
+   kubectl apply -f storage-class.yaml
+   ```
 
-Apply the Deployment:
-```bash
-kubectl apply -f deployment-with-pvc.yaml
-```
+2. **Create the PersistentVolumeClaim**:
+   ```sh
+   kubectl apply -f pvc.yaml
+   ```
 
-#### Step 5: Verify the Deployment and PVC
+3. **Create the Deployment**:
+   ```sh
+   kubectl apply -f deployment.yaml
+   ```
 
-Check the status of the Deployment and PVC:
-```bash
-kubectl get deployments
-kubectl get pods
-kubectl get pvc
-```
+### Verify the Resources
+1. **Check the PersistentVolumeClaim**:
+   ```sh
+   kubectl get pvc -n dev
+   ```
 
-#### Step 6: Verify the Volume is Mounted
+2. **Check the PersistentVolume**:
+   ```sh
+   kubectl get pv
+   ```
 
-Verify that the volume is correctly mounted inside one of the Pods:
-```bash
-kubectl get pods
-kubectl exec -it <pod-name> -- /bin/bash
-ls /usr/share/nginx/html
-```
+3. **Check the Deployment and Pod**:
+   ```sh
+   kubectl get deployments -n dev
+   kubectl get pods -n dev
+   ```
+
+4. **Verify that the pod is writing data to the volume**:
+   - Replace `pod_name` with the actual name of your pod.
+   ```sh
+   kubectl exec -it pod_name -n dev -- cat /data/out.txt
+   ```
+
+### Conclusion
+You have successfully deployed and tested dynamic provisioning of PV and PVC using the Amazon EBS CSI driver in your EKS cluster.
+
 
 ### Summary
 - **Storage Class**: Defines the characteristics and provisioner for storage.
