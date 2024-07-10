@@ -1,5 +1,6 @@
-### Overview of Volumes
-Volumes in Kubernetes are a way to manage data in pods that can outlive the lifecycle of individual containers. They provide a way for containers to share data and store data persistently across pod restarts.
+### What is Kubernetes Volumes
+- Volumes in Kubernetes are a way to manage data in pods that can outlive the lifecycle of individual containers.
+- They provide a way for containers to share data and store data persistently across pod restarts.
 
 ### Types of Volumes
 1. **emptyDir**: Created when a pod is assigned to a node and exists as long as the pod is running on that node.
