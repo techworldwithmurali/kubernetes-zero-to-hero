@@ -183,29 +183,30 @@ Create a Deployment manifest file named `deployment-with-pvc.yaml`:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: app-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: app
   template:
     metadata:
       labels:
-        app: nginx
+        app: app
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
-        ports:
-        - containerPort: 80
+      - name: app
+        image: centos
+        command: ["/bin/sh"]
+        args: ["-c", "while true; do echo $(date -u) >> /data/out.txt; sleep 5; done"]
         volumeMounts:
-        - mountPath: "/usr/share/nginx/html"
-          name: storage
+        - name: persistent-storage
+          mountPath: /data
       volumes:
-      - name: storage
+      - name: persistent-storage
         persistentVolumeClaim:
-          claimName: my-pvc
+          claimName: ebs-claim
+
 ```
 
 #### Step 4: Apply the Deployment
