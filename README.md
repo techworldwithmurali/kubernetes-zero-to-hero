@@ -105,81 +105,78 @@ StatefulSets in Kubernetes are ideal for managing stateful applications that req
 
 #### Steps:
 
-1. **Create a StatefulSet YAML File**:
+1. **Create a configmap for the StatefulSet**:
+   - Create a file named `configmap.yaml` with the following content:
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webapp-config
+  namespace: dev
+data:
+  APP_COLOR: blue
+ ```
+
+3. **Apply the configmap**:
+   ```bash
+   kubectl apply -f configmap.yaml
+   ```
+
+4. **Apply the configmap**:
+   ```bash
+   kubectl apply -f configmap.yaml
+   ```
+
+5. **Verify configmap configmap**:
+   ```bash
+   kubectl get configmap
+   ```
+2. **Create a StatefulSet YAML File**:
    - Create a file named `statefulset.yaml` with the following content:
-     ```yaml
-     apiVersion: apps/v1
-     kind: StatefulSet
-     metadata:
-       name: web
-     spec:
-       selector:
-         matchLabels:
-           app: nginx
-       serviceName: "nginx"
-       replicas: 3
-       template:
-         metadata:
-           labels:
-             app: nginx
-         spec:
-           containers:
-           - name: nginx
-             image: nginx:1.14.2
-             ports:
-             - containerPort: 80
-               name: web
-             volumeMounts:
-             - name: www
-               mountPath: /usr/share/nginx/html
-       volumeClaimTemplates:
-       - metadata:
-           name: www
-         spec:
-           accessModes: [ "ReadWriteOnce" ]
-           resources:
-             requests:
-               storage: 1Gi
-     ```
+```yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: webapp
+  namespace: dev
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp-container
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: webapp-config
 
-2. **Create a Headless Service for the StatefulSet**:
-   - Create a file named `nginx-service.yaml` with the following content:
-     ```yaml
-     apiVersion: v1
-     kind: Service
-     metadata:
-       name: nginx
-     spec:
-       ports:
-       - port: 80
-         name: web
-       clusterIP: None
-       selector:
-         app: nginx
-     ```
+```
 
-3. **Apply the Headless Service**:
+3. **Apply the statefulset**:
    ```bash
-   kubectl apply -f nginx-service.yaml
+   kubectl apply -f statefulset.yaml
    ```
 
-4. **Apply the StatefulSet**:
+5. **Verify statefulset**:
    ```bash
-   kubectl apply -f web-statefulset.yaml
-   ```
-
-5. **Verify StatefulSet Deployment**:
-   ```bash
-   kubectl get statefulsets
+   kubectl get statefulset
    ```
 
 6. **Check Pods**:
    ```bash
-   kubectl get pods -o wide
+   kubectl get pods -n dev-o wide
    ```
 
 7. **Delete the StatefulSet and Service**:
    ```bash
-   kubectl delete -f web-statefulset.yaml
-   kubectl delete -f nginx-service.yaml
+   kubectl delete -f configmap.yaml
+   kubectl delete -f statefulset.yaml
    ```
