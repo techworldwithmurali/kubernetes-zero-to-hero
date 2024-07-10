@@ -105,74 +105,71 @@ StatefulSets in Kubernetes are ideal for managing stateful applications that req
 
 #### Steps:
 
-1. **Create a configmap for the StatefulSet**:
+Here are the corrected steps:
+
+1. **Create a ConfigMap for the StatefulSet**:
    - Create a file named `configmap.yaml` with the following content:
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: webapp-config
-  namespace: dev
-data:
-  APP_COLOR: blue
- ```
+     ```yaml
+     apiVersion: v1
+     kind: ConfigMap
+     metadata:
+       name: webapp-config
+       namespace: dev
+     data:
+       APP_COLOR: blue
+     ```
 
-3. **Apply the configmap**:
+2. **Apply the ConfigMap**:
    ```bash
    kubectl apply -f configmap.yaml
    ```
 
-4. **Apply the configmap**:
+3. **Verify the ConfigMap**:
    ```bash
-   kubectl apply -f configmap.yaml
+   kubectl get configmap -n dev
    ```
 
-5. **Verify configmap configmap**:
-   ```bash
-   kubectl get configmap
-   ```
-2. **Create a StatefulSet YAML File**:
+4. **Create a StatefulSet YAML File**:
    - Create a file named `statefulset.yaml` with the following content:
-```yaml
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: webapp
-  namespace: dev
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: webapp
-  template:
-    metadata:
-      labels:
-        app: webapp
-    spec:
-      containers:
-      - name: webapp-container
-        image: nginx:latest
-        ports:
-        - containerPort: 80
-        envFrom:
-        - configMapRef:
-            name: webapp-config
+     ```yaml
+     apiVersion: apps/v1
+     kind: StatefulSet
+     metadata:
+       name: webapp
+       namespace: dev
+     spec:
+       replicas: 2
+       selector:
+         matchLabels:
+           app: webapp
+       template:
+         metadata:
+           labels:
+             app: webapp
+         spec:
+           containers:
+           - name: webapp-container
+             image: nginx:latest
+             ports:
+             - containerPort: 80
+             envFrom:
+             - configMapRef:
+                 name: webapp-config
+     ```
 
-```
-
-3. **Apply the statefulset**:
+5. **Apply the StatefulSet**:
    ```bash
    kubectl apply -f statefulset.yaml
    ```
 
-5. **Verify statefulset**:
+6. **Verify the StatefulSet**:
    ```bash
-   kubectl get statefulset
+   kubectl get statefulset -n dev
    ```
 
-6. **Check Pods**:
+7. **Check Pods**:
    ```bash
-   kubectl get pods -n dev-o wide
+   kubectl get pods -n dev -o wide
    ```
 
 7. **Delete the StatefulSet and Service**:
