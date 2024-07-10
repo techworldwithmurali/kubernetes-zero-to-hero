@@ -74,7 +74,8 @@
      curl http://nginx-service:80
      ```
 # What is Node Port 
-A **NodePort** is a type of Kubernetes Service that exposes a service on a specific port on each Node in the cluster, making it accessible from outside the cluster. This allows external traffic to access the service running inside the Kubernetes cluster.
+- A **NodePort** is a type of Kubernetes Service that exposes a service on a specific port on each Node in the cluster, making it accessible from outside the cluster.
+- This allows external traffic to access the service running inside the Kubernetes cluster.
 
 ### Key Concepts
 
