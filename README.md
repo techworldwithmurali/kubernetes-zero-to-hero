@@ -1,6 +1,7 @@
 ### What are Kubernetes Services?
 
-In Kubernetes, Services are an abstraction layer that defines a logical set of Pods and a policy by which to access them. They enable network access to a set of Pods, providing a stable endpoint for communication within the Kubernetes cluster.
+- In Kubernetes, Services are an abstraction layer that defines a logical set of Pods and a policy by which to access them.
+- They enable network access to a set of Pods, providing a stable endpoint for communication within the Kubernetes cluster.
 
 ### Types of Kubernetes Services:
 
