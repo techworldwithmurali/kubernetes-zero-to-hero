@@ -128,6 +128,21 @@ A **NodePort** is a type of Kubernetes Service that exposes a service on a speci
      ```
    - Access the service from outside the cluster using `<NodeIP>:30080`.
 
+# LoadBalancer
+In Kubernetes, a **LoadBalancer** is a type of Service that automatically provisions and manages an external load balancer for routing external traffic to the pods within the cluster. This type of service abstracts the complexity of external load balancing and integrates it seamlessly with Kubernetes.
+
+### Key Concepts
+
+- **External Load Balancer**: A LoadBalancer service typically provisions an external load balancer from the cloud provider (e.g., AWS, GCP, Azure).
+- **Automatic Configuration**: The service is automatically configured to distribute traffic to the appropriate pods.
+- **External Access**: Provides a stable IP address (or DNS name) for accessing the service from outside the cluster.
+
+### How LoadBalancer Works
+
+1. **Service Definition**: When you define a service with `type: LoadBalancer`, Kubernetes provisions an external load balancer through the cloud provider.
+2. **Traffic Routing**: The external load balancer routes incoming traffic to the service, which then forwards the traffic to the appropriate pods based on the service's selector.
+3. **Stable Endpoint**: The external load balancer provides a stable IP address or DNS name for accessing the service.
+
 ### Lab Session: Load Balancer
 
 #### Objectives:
