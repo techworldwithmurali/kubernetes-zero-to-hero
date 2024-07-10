@@ -33,7 +33,7 @@ data:
 3. **Verify ConfigMap Creation:**
    ```bash
    kubectl get configmaps
-   kubectl describe configmap my-configmap
+   kubectl describe configmap my-config
    ```
 
 4. **Access ConfigMap Data from Pod:**
@@ -63,12 +63,6 @@ spec:
               name: my-config
 
 ```
-
-5. **Access ConfigMap Data from CLI:**
-   - Retrieve specific data from ConfigMap:
-     ```bash
-     kubectl get configmap my-configmap -o jsonpath='{.data.key1}'
-     ```
 
 ### Introduction to Kubernetes Secrets
 
@@ -129,10 +123,4 @@ spec:
              secretKeyRef:
                name: my-secret
                key: password
-     ```
-
-5. **Access Secret Data from CLI:**
-   - Retrieve specific data from Secret:
-     ```bash
-     kubectl get secret my-secret -o jsonpath='{.data.username}' | base64 --decode
      ```
