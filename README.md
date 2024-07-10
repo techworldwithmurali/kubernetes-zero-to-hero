@@ -41,6 +41,7 @@ Kubernetes addresses the challenges associated with deploying and scaling contai
 
 ## Kubernetes Architecture
 
+![Kubernetes Architecture - Tech World with Murali - Moole Muralidhara Reddy.png](https://github.com/techworldwithmurali/kubernetes-zero-to-hero/blob/main/Day-1/images/Kubernetes%20Architecture%20-%20Tech%20World%20with%20Murali%20-%20Moole%20Muralidhara%20Reddy.png)
 ### Components of Kubernetes Architecture:
 - **Master Node**: Controls and manages the Kubernetes cluster.
   - **kube-apiserver**: Exposes the Kubernetes API.
