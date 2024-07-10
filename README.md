@@ -25,15 +25,17 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: my-pv
+  name: test-pv
+  namespace: dev
 spec:
-  capacity:
-    storage: 10Gi
   accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  hostPath:
-    path: /mnt/data
+  - ReadWriteOnce
+  capacity:
+    storage: 5Gi
+  csi:
+    driver: ebs.csi.aws.com
+    fsType: ext4
+    volumeHandle: vol-039d16206ce355d91
 ```
 
 #### Step 2: Creating a Persistent Volume Claim (PVC)
@@ -41,13 +43,16 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: my-pvc
+  name: ebs-claim
+  namespace: dev
 spec:
+  storageClassName: "" # Empty string must be explicitly set otherwise default StorageClass will be set
+  volumeName: test-pv
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 5Gi
 ```
 
 #### Step 3: Creating a Deployment with PVC
