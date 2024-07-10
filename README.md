@@ -219,7 +219,7 @@ data:
 4. **Access Secret Data from Pod:**
    - Mount Secret data as environment variables or volumes in a Pod.
    - Example of using Secret data in a Deployment spec:
-     ```yaml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
