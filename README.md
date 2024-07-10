@@ -250,4 +250,4 @@ spec:
               name: myapp-secret
               key: password
 
-     ```
+```
