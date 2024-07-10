@@ -1,3 +1,58 @@
+# Kubernetes Objects and API Versions
+
+## Kubernetes Objects
+
+Kubernetes objects are persistent entities in the Kubernetes system. They represent the state of your cluster and include information about:
+
+- **What containers are running**
+- **Which resources they can use**
+- **How they behave**
+
+Common Kubernetes objects include:
+
+1. **Pod**: The smallest and simplest Kubernetes object. A pod represents a single instance of a running process in your cluster.
+2. **Service**: An abstraction that defines a logical set of pods and a policy by which to access them.
+3. **Deployment**: Provides declarative updates to applications. It describes the desired state and manages the deployment of pods.
+4. **ReplicaSet**: Ensures that a specified number of pod replicas are running at any given time.
+5. **ConfigMap**: Allows you to decouple configuration artifacts from image content to keep containerized applications portable.
+6. **Secret**: Used to store and manage sensitive information, such as passwords, OAuth tokens, and ssh keys.
+
+## API Versions
+
+Kubernetes uses API versions to evolve its API while maintaining compatibility. The API version indicates the maturity and stability of a resource. Common API version stages include:
+
+1. **alpha**: Early stage, may change significantly. Not recommended for production use.
+2. **beta**: More stable than alpha, but still may change. Features are well-tested and enabled by default.
+3. **stable**: Fully stable and mature. Ready for production use.
+
+### Examples of API Versions:
+
+- **v1**: Indicates the first stable release of a resource.
+- **v1beta1**: Indicates a beta release that is more stable than alpha but may still change.
+- **v1alpha1**: Indicates an alpha release with potential significant changes in the future.
+
+### How to Specify API Versions:
+
+When defining Kubernetes objects, you must specify the `apiVersion` field in the YAML or JSON configuration file. For example:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+```
+
+In this example, `apiVersion: v1` specifies that the Pod resource is using the stable v1 API version.
+
+## References
+
+- [Kubernetes Official Documentation](https://kubernetes.io/docs/)
+- [Kubernetes API Overview](https://kubernetes.io/docs/concepts/overview/kubernetes-api/)
+
 # Kubernetes Lab Sessions
 
 ## Lab Session 1: Creating a Pod Using Imperative Commands in Kubernetes
