@@ -73,7 +73,8 @@ spec:
 
 ### What is Kubernetes StatefulSets?
 
-**Kubernetes StatefulSets** manage the deployment and scaling of a set of Pods, and provide guarantees about the ordering and uniqueness of these Pods. Unlike Deployments, StatefulSets are designed for applications that require stable, unique network identifiers and stable, persistent storage.
+- **Kubernetes StatefulSets** manage the deployment and scaling of a set of Pods, and provide guarantees about the ordering and uniqueness of these Pods.
+- Unlike Deployments, StatefulSets are designed for applications that require stable, unique network identifiers and stable, persistent storage.
 
 ## Use Cases for StatefulSets
 
