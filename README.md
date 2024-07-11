@@ -93,7 +93,7 @@ To create an index named `fluent_bit` in Amazon OpenSearch Service (formerly kno
 7. **Verify Index Creation:**
    - After executing the API call, you should see a confirmation message indicating that the index `fluent_bit` has been created successfully.
 
-## Lab Session - Deploying Fluent Bit for Log Collection
+## Lab Session - Deploying Fluent Bit on Kubernetes for Log Collection
 
 #### Step 1: Create Namespace
 
