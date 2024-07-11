@@ -320,6 +320,8 @@ Update the internal database of Elasticsearch security roles mapping for the 'al
 ```bash
 curl -sS -u "admin:Admin@2580" -X PATCH https://search-dev-es-ujos6gbqlrsis3dsh4axnxlq5e.us-east-1.es.amazonaws.com/_opendistro/_security/api/rolesmapping/all_access?pretty -H 'Content-Type: application/json' -d '[{"op": "add", "path": "/backend_roles", "value": ["arn:aws:iam::714771635465:role/dev-fluent-bit-iam-role"]}]'
 ```
+Note: Before executing the CURL command, ensure to update the username (`admin`) and password (`Admin@2580`) with your Elasticsearch credentials, and replace the URL (`https://search-dev-es-ujos6gbqlrsis3dsh4axnxlq5e.us-east-1.es.amazonaws.com`) with your actual Elasticsearch endpoint URL.
+
 
 #### Step 9: Deploy a Sample Application
 
