@@ -267,14 +267,10 @@ spec:
    ```bash
    kubectl apply -f cluster-autoscaler.yaml
    ```
-### Important Notes
+### Important Note
 
-#### Update IAM Role ARN
-
-To set up the Cluster Autoscaler on Amazon EKS, you need to create a ServiceAccount with the correct IAM role ARN. Here's a note detailing the steps and an example configuration:
-
-### Important Note for Setting Up Cluster Autoscaler on Amazon EKS
-
+### Reference
+For more detailed information, you can refer to the [Cluster Autoscaler AWS Example](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml).
 #### Update IAM Role ARN in ServiceAccount
 
 Make sure to update the IAM role ARN in the annotations of your ServiceAccount configuration. This role provides the necessary permissions for the Cluster Autoscaler to interact with AWS resources.
@@ -318,8 +314,7 @@ Ensure the tags `k8s.io/cluster-autoscaler/enabled` and `k8s.io/cluster-autoscal
 
 
    Adjust the `image` version (`v1.21.0` here) to match the version of Kubernetes and Cluster Autoscaler you are using.
-### Reference
-For more detailed information, you can refer to the [Cluster Autoscaler AWS Example](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml).
+
 ## Step 7: Create an Nginx deployment to test the functionality of the Cluster Autoscaler
 
 Create an Nginx deployment to test the functionality of the Cluster Autoscaler.
