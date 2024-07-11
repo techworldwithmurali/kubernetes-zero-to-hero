@@ -191,7 +191,10 @@ Apply the ingress configuration:
 ```bash
 kubectl apply -f ingress.yaml
 ```
-
+# Access the application using below url
+```yaml
+http://nginx-app.techworldwithmurali.in
+```
 ### Explanation:
 
 - **Namespace (`ns.yaml`)**: Creates a namespace named `dev`.
@@ -323,7 +326,10 @@ Apply the ingress configuration:
 ```bash
 kubectl apply -f ingress.yaml
 ```
-
+# Access the application using below url
+```yaml
+https://nginx-app.techworldwithmurali.in
+```
 ### Explanation:
 
 - **Namespace (`ns.yaml`)**: Creates a namespace named `dev`.
@@ -360,3 +366,172 @@ Apply the namespace configuration:
 kubectl apply -f ns.yaml
 ```
 
+### Step 2: Create the Deployment for nginx-app
+
+Save the following content in a file named `nginx-app-deployment.yaml`:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-app
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      app: nginx-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx-app
+        ports:
+        - containerPort: 80
+```
+
+Apply the deployment configuration:
+
+```bash
+kubectl apply -f deployment.yaml
+```
+
+### Step 3: Create the Service for nginx-app
+
+Save the following content in a file named `nginx-app-service.yaml`:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-app
+  namespace: dev
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  type: NodePort
+  selector:
+    app: nginx-app
+```
+
+Apply the service configuration:
+
+```bash
+kubectl apply -f service.yaml
+```
+
+### Step 4: Create the Deployment for my-app
+
+Save the following content in a file named `my-app-deployment.yaml`:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-app
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      app: nginx-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx-app
+        ports:
+        - containerPort: 80
+```
+
+Apply the deployment configuration:
+
+```bash
+kubectl apply -f deployment.yaml
+```
+
+### Step 5: Create the Service for my-app
+
+Save the following content in a file named `my-app-service.yaml`:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-app
+  namespace: dev
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  type: NodePort
+  selector:
+    app: nginx-app
+```
+
+Apply the service configuration:
+
+```bash
+kubectl apply -f service.yaml
+```
+### Step 4: Create the Ingress
+
+Save the following content in a file named `ingress.yaml`:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dev-ingress
+  namespace: dev
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/tags: app=techworldwithmurali,Team=DevOps
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:338240650890:certificate/5b099762-6fda-45fd-a5f2-034156c43f0f
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
+spec:
+  ingressClassName: alb
+  rules:
+    - host: nginx-app.techworldwithmurali.in
+      http:
+        paths:
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name: nginx-app
+                port:
+                  number: 80
+    - host: my-app.techworldwithmurali.in
+      http:
+        paths:
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name: my-app
+                port:
+                  number: 80
+
+```
+
+Apply the ingress configuration:
+
+```bash
+kubectl apply -f ingress.yaml
+```
+# Access the application using below url
+```yaml
+https://nginx-app.techworldwithmurali.in
+https://my-app.techworldwithmurali.in
+```
