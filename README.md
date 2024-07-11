@@ -193,7 +193,7 @@ You should see output similar to the following, showing the current CPU utilizat
 
 ```plaintext
 NAME        REFERENCE                  TARGETS    MINPODS   MAXPODS   REPLICAS   AGE
-nginx-hpa   Deployment/nginx-deployment   10%/50%    1         10        1          1m
+php-apache   Deployment/php-apache   10%/50%    1         10        1          1m
 ```
 
 #### Step 4: Generate Load to Test HPA
@@ -203,10 +203,7 @@ To test the HPA, generate load on the deployment. You can use a simple load gene
 For example, you can run a busybox pod that continuously makes HTTP requests to the NGINX deployment:
 
 ```bash
-kubectl run -i --tty load-generator --image=busybox /bin/sh
-
-# Inside the busybox shell, run:
-while true; do wget -q -O- http://nginx-deployment; done
+kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
 ```
 
 #### Step 5: Monitor the HPA
