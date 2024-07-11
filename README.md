@@ -4,7 +4,7 @@
 - It works in conjunction with the Horizontal Pod Autoscaler (HPA) to ensure that the cluster has enough resources to run all scheduled pods and scales down the cluster when there are idle nodes.
 - The Cluster Autoscaler is particularly useful in cloud environments where you pay for the resources you use, as it helps optimize costs by only running the necessary number of nodes.
 
-### Key Features and Functionality of Cluster Autoscaler:
+### Key Features of Cluster Autoscaler:
 
 1. **Dynamic Scaling**:
    - Cluster Autoscaler dynamically adjusts the number of nodes in a cluster based on the current workload.
