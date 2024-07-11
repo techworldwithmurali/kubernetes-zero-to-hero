@@ -65,9 +65,9 @@
 - Update the YAML files with your cluster name, image tag, and service account annotations as needed.
 
 #### Step 7: Apply Kubernetes Ingress Controller Manifest File
-- Apply the modified Kubernetes Ingress Controller manifest file (e.g., `ingress.yaml`) using:
+- Apply the modified Kubernetes Ingress Controller manifest file (e.g., `ingress-controler-alb.yaml`) using:
   ```bash
-  kubectl apply -f ingress.yaml
+  kubectl apply -f ingress-controler-alb.yaml
   ```
 
 #### Step 8: Verify Ingress Controller Deployment
