@@ -1,6 +1,8 @@
-### What is Metrics Server
+# What is Metrics Server
 
-The Metrics Server is a cluster-wide aggregator of resource usage data in Kubernetes. It collects resource metrics (such as CPU and memory usage) from the kubelet on each node and makes them available via the Kubernetes API. These metrics are used by various Kubernetes components to make scheduling and scaling decisions.
+- The Metrics Server is a cluster-wide aggregator of resource usage data in Kubernetes.
+- It collects resource metrics (such as CPU and memory usage) from the kubelet on each node and makes them available via the Kubernetes API.
+- These metrics are used by various Kubernetes components to make scheduling and scaling decisions.
 
 ### Metrics Server Architecture
 
