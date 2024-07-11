@@ -142,7 +142,7 @@ spec:
 Apply the deployment:
 
 ```bash
-kubectl apply -f nginx-deployment.yaml
+kubectl apply -f deployment.yaml
 ```
 #### Step 2: Create a Service
 
@@ -164,7 +164,7 @@ spec:
 Apply the service:
 
 ```bash
-kubectl apply -f nginx-service.yaml
+kubectl apply -f service.yaml
 ```
 #### Step 3: Create a Horizontal Pod Autoscaler
 
