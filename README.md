@@ -9,7 +9,54 @@ EFK is a stack commonly used for log aggregation and analysis in Kubernetes envi
 - **Kibana**: An open-source data visualization dashboard for Elasticsearch. It provides visualization capabilities on top of data indexed in Elasticsearch and allows you to perform advanced data analysis and search interaction.
 
 
-### Lab Session - Setting up Elasticsearch and Kibana in AWS
+### Lab Session - Setting up Elasticsearch / Opensaerch a in AWS
+
+1. **Sign In to AWS Console:**
+   - Navigate to [AWS Management Console](https://aws.amazon.com) and sign in.
+
+2. **Access OpenSearch Service:**
+   - Under Analytics, select "Amazon OpenSearch Service."
+
+3. **Create Domain:**
+   - Choose "Create domain."
+
+4. **Domain Name:**
+   - Enter a name for your domain (e.g., "movies").
+
+5. **Domain Creation Method:**
+   - Choose "Standard create."
+
+6. **Templates:**
+   - Select "Dev/test."
+
+7. **Deployment Option:**
+   - Choose "Domain with standby."
+
+8. **Version:**
+   - Select the latest version available.
+
+9. **Network Configuration:**
+   - Choose "Public access" for simplicity in this tutorial.
+
+10. **Fine-Grained Access Control:**
+    - Enable fine-grained access control.
+    - Create a master user with a username and password.
+
+11. **Access Policy:**
+    - Choose "Only use fine-grained access control" for access policy.
+
+12. **Ignore Additional Settings:**
+    - Skip configurations related to SAML authentication, Amazon Cognito authentication, and other advanced settings for now.
+
+13. **Create Domain:**
+    - Review your settings and choose "Create."
+
+14. **Domain Initialization:**
+    - Wait for the domain to initialize. This process typically takes 15–30 minutes but can vary depending on configuration.
+
+15. **Access Endpoint:**
+    - Once initialized, note the domain endpoint (e.g., `https://search-my-domain.us-east-1.es.amazonaws.com`) from the General Information section.
+
 
 ### Lab Session - Deploying Fluent Bit for Log Collection
 
