@@ -304,9 +304,10 @@ spec:
           name: fluent-bit-config
       serviceAccountName: fluent-bit
 
-
-
 ```
+
+Note: Before deploying the DaemonSet, ensure to update the Elasticsearch URL (`Host`) and AWS region (`AWS_Region`) in the `output-elasticsearch.conf` section of `fluentbit.yaml` according to your OpenSearch (formerly known as Elasticsearch) configuration and region.
+
 
 ```bash
 kubectl apply -f fluentbit.yaml
