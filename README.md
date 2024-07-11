@@ -12,99 +12,76 @@ Grafana is an open-source platform for monitoring and observability, specializin
 
 ### Installation of Prometheus and Grafana using Helm Chart
 
-#### Step 1: Install Helm
+**Prerequisites:**
+1. Ensure that the EKS Cluster is up and running.
+2. Install Helm3 on your Windows machine.
+3. Connect to your EKS cluster using `kubectl`.
+4. Clone the Prometheus GitHub repository locally for custom configurations:
+   - [Prometheus Helm Charts Repository](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml)
 
-Ensure you have Helm installed on your local machine and configured to connect to your Kubernetes cluster.
+**Implementation Steps:**
 
-#### Step 2: Add Helm Chart Repositories
+**Step 1: Add Helm Stable Charts**
+```bash
+helm repo add stable https://charts.helm.sh/stable
+```
 
+**Step 2: Add Prometheus Helm repository**
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo add grafana https://grafana.github.io/helm-charts
-helm repo update
 ```
 
-#### Step 3: Install Prometheus
-
-Create a `values-prometheus.yaml` file with custom configuration for Prometheus:
-
-```yaml
-serverFiles:
-  prometheus.yml:
-    scrape_configs:
-      - job_name: 'kubernetes-apiservers'
-        kubernetes_sd_configs:
-          - role: endpoints
-        scheme: https
-        tls_config:
-          ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
-        relabel_configs:
-          - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
-            action: keep
-            regex: default;kubernetes;https
-
-alertmanagerFiles:
-  alertmanager.yml:
-    global:
-      resolve_timeout: 5m
-    route:
-      group_by: ['alertname', 'namespace', 'service']
-      group_wait: 30s
-      group_interval: 5m
-      repeat_interval: 3h
-    receivers:
-      - name: default-receiver
-        webhook_configs:
-          - url: http://alertmanager-webhook
-```
-
-Install Prometheus using Helm:
-
+**Step 3: Explore available charts**
 ```bash
-helm install prometheus prometheus-community/prometheus -f values-prometheus.yaml
+helm search repo prometheus-community
 ```
 
-#### Step 4: Install Grafana
-
-Create a `values-grafana.yaml` file with custom configuration for Grafana:
-
-```yaml
-adminUser: admin
-adminPassword: admin
-datasources:
-  datasources.yaml:
-    apiVersion: 1
-    datasources:
-      - name: Prometheus
-        type: prometheus
-        url: http://prometheus-server
-        access: proxy
-        isDefault: true
-dashboards:
-  defaultDashboardsEnabled: true
-  default:
-    k8s:
-      url: https://github.com/prometheus-operator/kube-prometheus/tree/main/manifests/grafana-dashboards
-```
-
-Install Grafana using Helm:
-
+**Step 4: Create Prometheus namespace**
 ```bash
-helm install grafana grafana/grafana -f values-grafana.yaml
+kubectl create namespace prometheus
 ```
 
-#### Step 5: Access Prometheus and Grafana
-
-Retrieve the Prometheus and Grafana URLs:
-
+**Step 5: Install kube-prometheus-stack**
 ```bash
-kubectl get svc prometheus-server -n default
-kubectl get svc grafana -n default
+# Install using default values
+helm install prometheus-stack prometheus-community/kube-prometheus-stack -n prometheus
+
+# Install with custom values.yaml (if applicable)
+# helm install prometheus-stack prometheus-community/kube-prometheus-stack -n prometheus -f custom-values.yaml
 ```
 
-Access Prometheus at `http://prometheus-server:<port>` and Grafana at `http://grafana:<port>`. Log in to Grafana using the credentials configured (`admin/admin` by default).
+**Step 6: Check Prometheus and Grafana pods**
+```bash
+kubectl get pods -n prometheus
+```
 
-### Summary
+**Step 7: Check Prometheus and Grafana services**
+```bash
+kubectl get svc -n prometheus
+```
 
-Monitoring in Kubernetes involves observing and analyzing metrics and logs to ensure the health and performance of applications and infrastructure. Prometheus is used for metrics collection and storage, while Grafana provides visualization and analytics capabilities. Installing Prometheus and Grafana using Helm simplifies the setup process and allows for effective monitoring and observability within Kubernetes clusters.
+**Step 8: Enable external access (LoadBalancer or NodePort)**
+```bash
+# Edit the services to enable external access
+kubectl edit svc prometheus-stack-kube-prom-prometheus -n prometheus
+kubectl edit svc prometheus-stack-grafana -n prometheus
+```
+
+**Step 9: Confirm service changes and get Load Balancer URL**
+```bash
+kubectl get svc -n prometheus
+```
+
+**Step 10: Access Prometheus and Grafana using the Load Balancer**
+
+- **Access Prometheus UI:**
+  - URL: `http://loadbalancer-url:9090`
+
+- **Access Grafana UI:**
+  - URL: `http://loadbalancer-url:80`
+  - **Login Credentials:**
+    - Username: `admin`
+    - Password: `prom-operator`
+
+**Conclusion:**
+Congratulations! You have successfully deployed Prometheus and Grafana on your EKS cluster using Helm. You can now start visualizing and monitoring your metrics.
