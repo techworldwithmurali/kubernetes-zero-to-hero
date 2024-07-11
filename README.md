@@ -94,7 +94,7 @@ Ensure that the Metrics Server is installed and configured in your cluster.
 
 #### Step 1: Create a Deployment
 
-Create a deployment manifest file named `nginx-deployment.yaml`:
+Create a deployment manifest file named `deployment.yaml`:
 
 ```yaml
 apiVersion: apps/v1
@@ -221,7 +221,8 @@ Once you are done testing, delete the HPA and the deployment:
 
 ```bash
 kubectl delete -f hpa.yaml
-kubectl delete -f nginx-deployment.yaml
+kubectl delete -f deployment.yaml
+kubectl delete -f service.yaml
 ```
 
 ### Summary
