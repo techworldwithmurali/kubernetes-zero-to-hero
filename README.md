@@ -530,7 +530,7 @@ Apply the ingress configuration:
 ```bash
 kubectl apply -f ingress.yaml
 ```
-# Access the application using below url
+### Access the application using below url
 ```yaml
 https://nginx-app.techworldwithmurali.in
 https://my-app.techworldwithmurali.in
