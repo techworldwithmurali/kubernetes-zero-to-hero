@@ -76,3 +76,124 @@
   kubectl get all -n kube-system
   ```
 
+# Deploy Sample Ingress Resource without SSL
+### Step 1: Create the Namespace
+
+Save the following content in a file named `ns.yaml`:
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+```
+
+Apply the namespace configuration:
+
+```bash
+kubectl apply -f ns.yaml
+```
+
+### Step 2: Create the Deployment
+
+Save the following content in a file named `deployment.yaml`:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-app
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      app: nginx-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx-app
+        ports:
+        - containerPort: 80
+```
+
+Apply the deployment configuration:
+
+```bash
+kubectl apply -f deployment.yaml
+```
+
+### Step 3: Create the Service
+
+Save the following content in a file named `service.yaml`:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-app
+  namespace: dev
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  type: NodePort
+  selector:
+    app: nginx-app
+```
+
+Apply the service configuration:
+
+```bash
+kubectl apply -f service.yaml
+```
+
+### Step 4: Create the Ingress
+
+Save the following content in a file named `ingress.yaml`:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-app
+  namespace: dev
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/tags: app=techworldwithmurali,Team=DevOps
+spec:
+  ingressClassName: alb
+  rules:
+    - host: dev.telugudevopsguru.in
+      http:
+        paths:
+          - path: /index.html
+            pathType: Exact
+            backend:
+              service:
+                name: nginx-app
+                port:
+                  number: 80
+```
+
+Apply the ingress configuration:
+
+```bash
+kubectl apply -f ingress.yaml
+```
+
+### Explanation:
+
+- **Namespace (`ns.yaml`)**: Creates a namespace named `dev`.
+- **Deployment (`deployment.yaml`)**: Deploys an nginx container using the latest image of nginx, exposing port 80.
+- **Service (`service.yaml`)**: Exposes the nginx deployment on port 80 using a NodePort type service.
+- **Ingress (`ingress.yaml`)**: Defines an Ingress resource named `nginx-app` in the `dev` namespace, specifying that requests to `dev.techworldwithmurali.in/index.html` should route to the `nginx-app` service.
+
+Make sure to replace `dev.techworldwithmurali.in` with your actual domain name or DNS name pointing to your Kubernetes cluster.
+
+After applying these configurations, Kubernetes will deploy the nginx application, expose it via a service, and configure the Ingress to route traffic to it based on the specified rules.
