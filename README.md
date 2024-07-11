@@ -57,6 +57,41 @@ EFK is a stack commonly used for log aggregation and analysis in Kubernetes envi
 15. **Access Endpoint:**
     - Once initialized, note the domain endpoint (e.g., `search-dev-es-zuiy5hqs7l4kp27kwpwkmkhvbu.us-east-1.es.amazonaws.com`) from the General Information section.
 
+# Create a Index Name fluent_bit
+To create an index named `fluent_bit` in Amazon OpenSearch Service (formerly known as Amazon Elasticsearch Service), you typically use tools like the AWS Console or API calls. Here’s a basic outline of how you would do it using the AWS Console:
+
+1. **Navigate to Amazon OpenSearch Service:**
+   - Sign in to the [AWS Management Console](https://aws.amazon.com/console/) and go to the Amazon OpenSearch Service section.
+
+2. **Select your Domain:**
+   - Choose the domain you previously created or the one you want to use.
+
+3. **Access the Kibana Console:**
+   - Click on the domain name to open its details, then click on the "Kibana" link provided. This will open the Kibana dashboard for your OpenSearch domain.
+
+4. **Access Dev Tools:**
+   - In the Kibana dashboard, navigate to "Dev Tools" from the left-hand side menu. This is where you can directly interact with your OpenSearch cluster via APIs.
+
+5. **Create the Index:**
+   - In the Dev Tools console, you can use the following API call to create an index named `fluent_bit`:
+
+   ```json
+   PUT /fluent_bit
+   {
+     "settings": {
+       "number_of_shards": 1,
+       "number_of_replicas": 1
+     }
+   }
+   ```
+
+   - This example creates an index named `fluent_bit` with one shard and one replica. You can adjust the settings (`number_of_shards` and `number_of_replicas`) according to your requirements.
+
+6. **Execute the API Call:**
+   - Paste the above API call into the Dev Tools console and click on the green play button to execute it.
+
+7. **Verify Index Creation:**
+   - After executing the API call, you should see a confirmation message indicating that the index `fluent_bit` has been created successfully.
 
 ## Lab Session - Deploying Fluent Bit for Log Collection
 
