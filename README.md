@@ -64,13 +64,14 @@ Create an IAM policy named `dev-fluent-bit-iam-policy`:
             "Action": [
                 "es:ESHttp*"
             ],
-            "Resource": "arn:aws:es:us-east-1:714771635465:domain/dev-es",
+            "Resource": "arn:aws:es:us-east-1:<your-account-id>:domain/dev-es",
             "Effect": "Allow"
         }
     ]
 }
-```
 
+```
+Replace <your-account-id> with your actual AWS account ID.
 #### Step 4: Create an IAM Role and Attach the Policy for Your Service Account
 
 Create an IAM role named `dev-fluent-bit-iam-role` with a trust relationship for your EKS cluster's OIDC provider. Attach the `dev-fluent-bit-iam-policy` to this role.
