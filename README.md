@@ -10,7 +10,7 @@ There are three types of Probes in Kubernetes:
      ```yaml
      readinessProbe:
        httpGet:
-         path: /
+         path: /index.html
          port: 80
        initialDelaySeconds: 5
        periodSeconds: 10
@@ -22,7 +22,7 @@ There are three types of Probes in Kubernetes:
      ```yaml
      livenessProbe:
        httpGet:
-         path: /
+         path: /index.html
          port: 80
        initialDelaySeconds: 5
        periodSeconds: 10
@@ -34,20 +34,12 @@ There are three types of Probes in Kubernetes:
      ```yaml
      startupProbe:
        httpGet:
-         path: /
+         path: /index.html
          port: 80
        initialDelaySeconds: 5
        periodSeconds: 10
        failureThreshold: 30
      ```
-     
-### Types of Probes
-
-1. **Readiness Probe**: Determines when a container is ready to accept traffic. If the Readiness Probe fails, Kubernetes removes the pod from the endpoints of all Services that match the pod, which means the pod's IP address is removed from the load balancer pool, and no new connections are sent to the pod until it passes the probe.
-
-2. **Liveness Probe**: Checks if a container is running as expected. If the Liveness Probe fails, Kubernetes restarts the container to restore it to a healthy state.
-
-3. **Startup Probe**: Determines when a container application has started. It complements the Readiness Probe by detecting the initial startup phase of the container.
 
 ### Lab Session - Configuring Readiness Probes
 
