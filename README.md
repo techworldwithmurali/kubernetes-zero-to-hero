@@ -267,6 +267,43 @@ spec:
    ```bash
    kubectl apply -f cluster-autoscaler.yaml
    ```
+### Important Notes for Setting Up Cluster Autoscaler on Amazon EKS
+
+#### Update IAM Role ARN
+
+You need to update the IAM role ARN in your deployment configuration to match the IAM role created for the Cluster Autoscaler.
+
+Add the following annotation in your deployment configuration:
+
+```yaml
+annotations:
+  eks.amazonaws.com/role-arn: arn:aws:iam::338240650890:role/ca-role
+```
+
+Replace `arn:aws:iam::338240650890:role/ca-role` with your specific IAM role ARN.
+
+#### Update the Cluster Autoscaler Image
+
+Ensure you are using the latest or appropriate version of the Cluster Autoscaler image for your Kubernetes version. Update the image in your deployment configuration:
+
+```yaml
+- image: registry.k8s.io/autoscaling/cluster-autoscaler:v1.28.2
+```
+
+Replace `v1.28.2` with the latest version or the version compatible with your Kubernetes cluster.
+
+#### Update Node Group Auto-Discovery Tags
+
+You need to update the tags used for node group auto-discovery to match the tags used in your AWS environment.
+
+Update the command arguments in your deployment configuration:
+
+```yaml
+- --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/dev-cluster
+```
+
+Ensure the tags `k8s.io/cluster-autoscaler/enabled` and `k8s.io/cluster-autoscaler/dev-cluster` match the tags applied to your Auto Scaling Groups (ASGs) in AWS.
+
 
    Adjust the `image` version (`v1.21.0` here) to match the version of Kubernetes and Cluster Autoscaler you are using.
 
