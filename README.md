@@ -1,6 +1,6 @@
 + <b>Author: Moole Muralidhara Reddy</b></br>
 + <b>Email:</b> techworldwithmurali@gmail.com</br>
-+ <b>Website:</b>https://www.techworldwithmurali.com/</br>
++ <b>Website:</b> https://www.techworldwithmurali.com/</br>
 
 ## Manually - Deploy to EKS fetching image from DockerHub.
 
