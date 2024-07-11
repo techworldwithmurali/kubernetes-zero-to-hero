@@ -57,7 +57,7 @@ EFK is a stack commonly used for log aggregation and analysis in Kubernetes envi
 15. **Access Endpoint:**
     - Once initialized, note the domain endpoint (e.g., `search-dev-es-zuiy5hqs7l4kp27kwpwkmkhvbu.us-east-1.es.amazonaws.com`) from the General Information section.
 
-### Create a Index Name fluent_bit
+### Create a Index Name: fluent_bit
 To create an index named `fluent_bit` in Amazon OpenSearch Service (formerly known as Amazon Elasticsearch Service), you typically use tools like the AWS Console or API calls.
 
 1. **Navigate to Amazon OpenSearch Service:**
