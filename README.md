@@ -54,8 +54,9 @@ kubectl apply -f nginx-deployment.yaml
 Check the readiness status of the pod:
 
 ```bash
-kubectl get pods
-kubectl describe pods nginx-deployment-<pod-id> -n dev
+kubectl get pods -n dev
+kubectl describe pod <pod-name> -n dev
+
 ```
 
 ### Lab Session - Configuring Liveness Probes
@@ -102,8 +103,8 @@ kubectl apply -f nginx-deployment.yaml --force
 Check the liveness status of the pod:
 
 ```bash
-kubectl get pods
-kubectl describe pods nginx-deployment-<pod-id>
+kubectl get pods -n dev
+kubectl describe pod <pod-name> -n dev
 ```
 
 ### Lab Session - Configuring Startup Probes
@@ -156,14 +157,7 @@ kubectl apply -f nginx-deployment.yaml --force
 Check the startup status of the pod:
 
 ```bash
-kubectl get pods
-kubectl describe pods nginx-deployment-<pod-id>
+kubectl get pods -n dev
+kubectl describe pod <pod-name> -n dev
+
 ```
-
-### Summary
-
-- **Probes in Kubernetes**: Essential for monitoring container health.
-- **Readiness Probe**: Ensures a container is ready to serve traffic.
-- **Liveness Probe**: Restarts a container if it becomes unhealthy.
-- **Startup Probe**: Checks if a container has started successfully.
-- **Lab Sessions**: Hands-on configuration and verification of Readiness, Liveness, and Startup Probes in Kubernetes deployments.
