@@ -225,11 +225,3 @@ kubectl delete -f deployment.yaml
 kubectl delete -f service.yaml
 ```
 
-### Summary
-
-1. **Introduction to HPA**: Understanding the basics and key concepts.
-2. **Creating a Deployment**: Define a deployment with resource requests and limits.
-3. **Creating an HPA**: Define and apply an HPA to manage the deployment.
-4. **Verify and Test HPA**: Generate load and monitor the HPA's scaling behavior.
-5. **Clean Up**: Remove the HPA and deployment resources.
-
