@@ -267,9 +267,32 @@ spec:
    ```bash
    kubectl apply -f cluster-autoscaler.yaml
    ```
-### Important Notes for Setting Up Cluster Autoscaler on Amazon EKS
+### Important Notes
 
 #### Update IAM Role ARN
+
+To set up the Cluster Autoscaler on Amazon EKS, you need to create a ServiceAccount with the correct IAM role ARN. Here's a note detailing the steps and an example configuration:
+
+### Important Note for Setting Up Cluster Autoscaler on Amazon EKS
+
+#### Update IAM Role ARN in ServiceAccount
+
+Make sure to update the IAM role ARN in the annotations of your ServiceAccount configuration. This role provides the necessary permissions for the Cluster Autoscaler to interact with AWS resources.
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    k8s-addon: cluster-autoscaler.addons.k8s.io
+    k8s-app: cluster-autoscaler
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::338240650890:role/ca-role
+  name: cluster-autoscaler
+  namespace: kube-system
+```
+
+Replace `arn:aws:iam::338240650890:role/ca-role` with the IAM role ARN you created for the Cluster Autoscaler.
 
 You need to update the IAM role ARN in your deployment configuration to match the IAM role created for the Cluster Autoscaler.
 
