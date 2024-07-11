@@ -262,6 +262,14 @@ spec:
           hostPath:
             path: "/etc/ssl/certs/ca-bundle.crt"
 ```
+   Apply the deployment YAML to deploy the Cluster Autoscaler:
+
+   ```bash
+   kubectl apply -f cluster-autoscaler.yaml
+   ```
+
+   Adjust the `image` version (`v1.21.0` here) to match the version of Kubernetes and Cluster Autoscaler you are using.
+
 ## Step 7: Create an Nginx deployment to test the functionality of the Cluster Autoscaler
 
 Create an Nginx deployment to test the functionality of the Cluster Autoscaler.
@@ -287,3 +295,26 @@ spec:
         - containerPort: 80
 
 ```
+
+   Apply the deployment YAML to create Nginx pods:
+
+   ```bash
+   kubectl apply -f nginx-deployment.yaml
+   ```
+
+   This will create 5 replicas of the Nginx deployment.
+
+## Step 8. Monitor Cluster Autoscaler behavior:
+
+   Monitor the logs of the Cluster Autoscaler to observe how it scales the number of nodes in response to the increased workload from the Nginx deployment:
+
+   ```bash
+   kubectl logs -f -n kube-system deployment.apps/cluster-autoscaler
+   ```
+
+   Check the number of nodes and pods to ensure they are scaling appropriately:
+
+   ```bash
+   kubectl get nodes
+   kubectl get pods
+   ```
