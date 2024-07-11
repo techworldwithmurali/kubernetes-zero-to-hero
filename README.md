@@ -97,6 +97,7 @@ Apply the service account configuration:
 ```bash
 kubectl apply -f fluent-bit-service-account.yaml
 ```
+Make sure to replace arn:aws:iam::714771635465:role/dev-fluent-bit-iam-role with your actual IAM role ARN for Fluent Bit. This annotation ensures that the service account fluent-bit in the logging namespace has the necessary permissions to perform actions allowed by the IAM role dev-fluent-bit-iam-role.
 
 #### Step 6: Update the Trust Relationship of the IAM Role
 
