@@ -158,7 +158,7 @@ Here's the detailed lab session for dynamic provisioning of Persistent Volumes (
 2. Ensure you have the necessary permissions to create the OIDC provider.
 
 ```sh
-eksctl utils associate-iam-oidc-provider --region <region> --cluster dev-cluster --approve
+Name: dev-cluster
 ```
 
 ### Step 2: Create an IAM Role and Attach the AmazonEBSCSIDriverPolicy Policy
