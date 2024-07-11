@@ -23,99 +23,69 @@ These metrics are used for:
 - **Monitoring and Alerting**: Providing visibility into resource usage for monitoring and alerting purposes.
 
 ### Lab Session - Installation and Configuration of Metrics Server
+To set up the Kubernetes Metrics Server, follow these steps:
 
-#### Step 1: Deploy Metrics Server
+### Step 1: Go to the Metrics Server Release Page
 
-Create a YAML file named `metrics-server-deployment.yaml`:
+Navigate to the Metrics Server release page on GitHub:
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: metrics-server
-  namespace: kube-system
-  labels:
-    k8s-app: metrics-server
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      k8s-app: metrics-server
-  template:
-    metadata:
-      labels:
-        k8s-app: metrics-server
-    spec:
-      containers:
-      - name: metrics-server
-        image: k8s.gcr.io/metrics-server/metrics-server:v0.6.1
-        args:
-        - --cert-dir=/tmp
-        - --secure-port=4443
-        - --kubelet-preferred-address-types=InternalIP,Hostname,InternalDNS,ExternalDNS,ExternalIP
-        - --kubelet-use-node-status-port
-        - --metric-resolution=15s
-        ports:
-        - name: main-port
-          containerPort: 4443
-          protocol: TCP
-        volumeMounts:
-        - name: tmp-dir
-          mountPath: /tmp
-      volumes:
-      - name: tmp-dir
-        emptyDir: {}
-```
+[Metrics Server Releases](https://github.com/kubernetes-sigs/metrics-server/releases)
 
-Apply the Deployment:
+### Step 2: Choose the Version
+
+Choose the desired version of the Metrics Server. For this example, we'll use version 0.7.1.
+
+### Step 3: Apply the Components YAML
+
+Run the following command to deploy the Metrics Server using `kubectl`:
 
 ```bash
-kubectl apply -f metrics-server-deployment.yaml
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.7.1/components.yaml
 ```
 
-#### Step 2: Create the Service
+This command will download the components.yaml file for version 0.7.1 from the Metrics Server GitHub repository and apply it to your Kubernetes cluster.
 
-Create a YAML file named `metrics-server-service.yaml`:
+### Step 4: Verify the Installation
 
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: metrics-server
-  namespace: kube-system
-  labels:
-    k8s-app: metrics-server
-spec:
-  selector:
-    k8s-app: metrics-server
-  ports:
-    - port: 443
-      targetPort: 4443
-      protocol: TCP
-      name: https
-```
-
-Apply the Service:
-
-```bash
-kubectl apply -f metrics-server-service.yaml
-```
-
-#### Step 3: Verify Metrics Server Deployment
-
-Check the status of the Metrics Server:
+To verify that the Metrics Server is running correctly, you can check the status of the `metrics-server` deployment in the `kube-system` namespace:
 
 ```bash
 kubectl get deployment metrics-server -n kube-system
-kubectl get pods -n kube-system | grep metrics-server
-kubectl get svc metrics-server -n kube-system
 ```
 
-#### Step 4: Verify Metrics API
-
-Use the following command to check if the Metrics API is available and returning data:
+Ensure that the `metrics-server` pods are running and ready:
 
 ```bash
+kubectl get pods -n kube-system | grep metrics-server
+```
+
+### Step 5: Use the Metrics Server
+
+After the Metrics Server is installed and running, you can use it to gather resource metrics. For example, you can use the following command to get the resource usage of nodes:
+
+```bash
+kubectl top nodes
+```
+
+And to get the resource usage of pods:
+
+```bash
+kubectl top pods --all-namespaces
+```
+
+### Example Commands for Version 0.7.1
+
+Here's the complete set of commands using Metrics Server version 0.7.1:
+
+```bash
+# Step 3: Apply the Metrics Server components
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.7.1/components.yaml
+
+# Step 4: Verify the installation
+kubectl get deployment metrics-server -n kube-system
+kubectl get pods -n kube-system | grep metrics-server
+
+# Step 5: Use the Metrics Server
 kubectl top nodes
 kubectl top pods --all-namespaces
 ```
