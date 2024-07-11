@@ -1,4 +1,4 @@
-### Explanation of EFK: Elasticsearch, Fluentd, Kibana
+### What is EFK: Elasticsearch, Fluentd, Kibana
 
 EFK is a stack commonly used for log aggregation and analysis in Kubernetes environments. It consists of:
 
