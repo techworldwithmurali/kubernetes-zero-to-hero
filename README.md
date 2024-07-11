@@ -23,7 +23,34 @@ kubectl create namespace logging
 
 #### Step 2: Create the OIDC Provider for EKS Cluster
 
-Ensure that your EKS cluster has an OIDC provider configured. This is typically done during cluster creation or can be added later.
+1. **Open the Amazon EKS Console**
+   - Go to [Amazon EKS Console](https://console.aws.amazon.com/eks/home#/clusters).
+
+2. **Select Your Cluster**
+   - In the left pane, select **Clusters**.
+   - On the Clusters page, click on the name of your cluster.
+
+3. **Retrieve the OIDC Provider URL**
+   - In the Details section on the **Overview** tab, note the value of the **OpenID Connect provider URL**.
+
+4. **Open the IAM Console**
+   - Go to [IAM Console](https://console.aws.amazon.com/iam/).
+
+5. **Navigate to Identity Providers**
+   - In the left navigation pane, choose **Identity Providers** under **Access management**.
+
+6. **Check for Existing Provider**
+   - If a provider is listed that matches the URL for your cluster, then you already have a provider for your cluster.
+   - If a provider isn't listed that matches the URL for your cluster, then you need to create one.
+
+7. **Create a New Provider**
+   - Click on **Add provider**.
+
+8. **Configure the Provider**
+   - For **Provider type**, select **OpenID Connect**.
+   - For **Provider URL**, enter the OIDC provider URL for your cluster, and then choose **Get thumbprint**.
+   - For **Audience**, enter `sts.amazonaws.com`.
+   - Choose **Add provider**.
 
 #### Step 3: Create a Policy for Your Service Account
 
