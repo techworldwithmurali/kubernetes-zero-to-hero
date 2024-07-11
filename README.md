@@ -265,3 +265,25 @@ spec:
 ## Step 7: Create an Nginx deployment to test the functionality of the Cluster Autoscaler
 
 Create an Nginx deployment to test the functionality of the Cluster Autoscaler.
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-managed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-managed
+  template:
+    metadata:
+      labels:
+        app: nginx-managed
+    spec:
+      containers:
+      - name: nginx-managed
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+
+```
