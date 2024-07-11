@@ -174,7 +174,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: dev.telugudevopsguru.in
+    - host: dev.techworldwithmurali.in
       http:
         paths:
           - path: /index.html
