@@ -20,27 +20,26 @@ Create a deployment manifest file named `nginx-deployment.yaml` with a Readiness
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: my-app
+  namespace: dev
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: my-app
   template:
     metadata:
       labels:
-        app: nginx
+        app: my-app
     spec:
       containers:
-      - name: nginx
-        image: nginx
-        ports:
-        - containerPort: 80
+      - name: my-app-container
+        image: nginx:latest
         readinessProbe:
           httpGet:
-            path: /
+            path: /index.html
             port: 80
-          initialDelaySeconds: 15
+          initialDelaySeconds: 5
           periodSeconds: 10
 ```
 
@@ -56,7 +55,7 @@ Check the readiness status of the pod:
 
 ```bash
 kubectl get pods
-kubectl describe pods nginx-deployment-<pod-id>
+kubectl describe pods nginx-deployment-<pod-id> -n dev
 ```
 
 ### Lab Session - Configuring Liveness Probes
@@ -69,28 +68,27 @@ Update the `nginx-deployment.yaml` file to include a Liveness Probe:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: my-app
+  namespace: dev
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: my-app
   template:
     metadata:
       labels:
-        app: nginx
+        app: my-app
     spec:
       containers:
-      - name: nginx
-        image: nginx
-        ports:
-        - containerPort: 80
+      - name: my-app-container
+        image: nginx:latest
         livenessProbe:
           httpGet:
-            path: /
+            path: /index.html
             port: 80
-          initialDelaySeconds: 30
-          periodSeconds: 15
+          initialDelaySeconds: 5
+          periodSeconds: 10
 ```
 
 Apply the updated deployment:
@@ -118,28 +116,33 @@ Update the `nginx-deployment.yaml` file to include a Startup Probe:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: my-app
+  namespace: dev
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: my-app
   template:
     metadata:
       labels:
-        app: nginx
+        app: my-app
     spec:
       containers:
-      - name: nginx
-        image: nginx
-        ports:
-        - containerPort: 80
+      - name: my-app-container
+        image: nginx:latest
+        readinessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
         startupProbe:
           httpGet:
-            path: /
+            path: /index.html
             port: 80
-          failureThreshold: 30
-          periodSeconds: 10
+          timeoutSeconds: 300
+
 ```
 
 Apply the updated deployment:
