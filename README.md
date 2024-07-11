@@ -77,6 +77,11 @@
   ```
 
 # Deploy Sample Ingress Resource without SSL
+
+**Prerequisites:**
+
+You must have an Ingress controller for the Ingress resource to take effect; simply creating an Ingress resource alone will not suffice.
+
 ### Step 1: Create the Namespace
 
 Save the following content in a file named `ns.yaml`:
