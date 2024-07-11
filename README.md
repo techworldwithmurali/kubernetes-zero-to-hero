@@ -100,27 +100,26 @@ Create a deployment manifest file named `nginx-deployment.yaml`:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: php-apache
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      run: php-apache
   template:
     metadata:
       labels:
-        app: nginx
+        run: php-apache
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
+      - name: php-apache
+        image: registry.k8s.io/hpa-example
         ports:
         - containerPort: 80
         resources:
-          requests:
-            cpu: 200m
           limits:
             cpu: 500m
+          requests:
+            cpu: 200m
 ```
 
 Apply the deployment:
@@ -128,24 +127,52 @@ Apply the deployment:
 ```bash
 kubectl apply -f nginx-deployment.yaml
 ```
+#### Step 2: Create a Service
 
-#### Step 2: Create a Horizontal Pod Autoscaler
+Create a deployment manifest file named `service.yaml`:
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-apache
+  labels:
+    run: php-apache
+spec:
+  ports:
+  - port: 80
+  selector:
+    run: php-apache
+```
+
+Apply the service:
+
+```bash
+kubectl apply -f nginx-service.yaml
+```
+#### Step 3: Create a Horizontal Pod Autoscaler
 
 Create an HPA manifest file named `hpa.yaml`:
 
 ```yaml
-apiVersion: autoscaling/v1
+# https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/
+apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: nginx-hpa
+  name: php-apache
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: nginx-deployment
+    name: php-apache
   minReplicas: 1
   maxReplicas: 10
-  targetCPUUtilizationPercentage: 50
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
 ```
 
 Apply the HPA:
