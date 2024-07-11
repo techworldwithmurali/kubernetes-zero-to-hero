@@ -75,16 +75,11 @@ kubectl top pods --all-namespaces
 
 If Metrics Server is working correctly, you should see resource usage data for nodes and pods.
 
-### Summary
-
-1. **Metrics Server**: A Kubernetes component that aggregates resource usage data.
-2. **Architecture**: Collects data from kubelets, aggregates it, and provides it via the Metrics API.
-3. **Resource Metrics**: Includes CPU and memory usage for nodes and pods.
-4. **Installation and Configuration**: Deploy the Metrics Server using a Deployment and Service, then verify its operation.
 
 ### Introduction to Horizontal Pod Autoscaling (HPA)
 
-Horizontal Pod Autoscaling (HPA) automatically scales the number of pod replicas in a Kubernetes deployment, replica set, or stateful set based on observed CPU utilization, memory usage, or custom metrics. HPA helps ensure that applications have the right amount of resources available to handle the current load.
+- Horizontal Pod Autoscaling (HPA) automatically scales the number of pod replicas in a Kubernetes deployment, replica set, or stateful set based on observed CPU utilization, memory usage, or custom metrics.
+- HPA helps ensure that applications have the right amount of resources available to handle the current load.
 
 #### Key Concepts of HPA
 - **Metrics**: HPA can scale pods based on metrics like CPU usage, memory usage, or custom metrics provided by the application.
