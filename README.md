@@ -9,7 +9,7 @@ EFK is a stack commonly used for log aggregation and analysis in Kubernetes envi
 - **Kibana**: An open-source data visualization dashboard for Elasticsearch. It provides visualization capabilities on top of data indexed in Elasticsearch and allows you to perform advanced data analysis and search interaction.
 
 
-## Lab Session - Setting up Elasticsearch / Opensaerch a in AWS
+## Lab Session - Setting up Elasticsearch / Opensearch in AWS
 
 1. **Sign In to AWS Console:**
    - Navigate to [AWS Management Console](https://aws.amazon.com) and sign in.
