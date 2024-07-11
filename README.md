@@ -166,7 +166,7 @@ Save the following content in a file named `ingress.yaml`:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-app
+  name: dev-ingress
   namespace: dev
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
@@ -174,7 +174,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: dev.techworldwithmurali.in
+    - host: nginx-app.techworldwithmurali.in
       http:
         paths:
           - path: /index.html
@@ -294,7 +294,7 @@ Save the following content in a file named `ingress.yaml`:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-app
+  name: dev-ingress
   namespace: dev
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
@@ -305,7 +305,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: dev.techworldwithmurali.in
+    - host: nginx-app.techworldwithmurali.in
       http:
         paths:
           - path: /
@@ -339,4 +339,24 @@ After applying these configurations, Kubernetes will deploy the nginx applicatio
 
 ## Deploy Sample Ingress Resource with SSL and Multiple Ingress Rules
 
+**Prerequisites:**
+
+You must have an Ingress controller for the Ingress resource to take effect; simply creating an Ingress resource alone will not suffice.
+
+### Step 1: Create the Namespace
+
+Save the following content in a file named `ns.yaml`:
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+```
+
+Apply the namespace configuration:
+
+```bash
+kubectl apply -f ns.yaml
+```
 
