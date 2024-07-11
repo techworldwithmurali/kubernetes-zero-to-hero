@@ -337,4 +337,6 @@ After applying these configurations, Kubernetes will deploy the nginx applicatio
 
 ------
 
+## Deploy Sample Ingress Resource with SSL and Multiple Ingress Rules
+
 
