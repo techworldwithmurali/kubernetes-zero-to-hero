@@ -73,23 +73,6 @@ And to get the resource usage of pods:
 kubectl top pods --all-namespaces
 ```
 
-### Example Commands for Version 0.7.1
-
-Here's the complete set of commands using Metrics Server version 0.7.1:
-
-```bash
-# Step 3: Apply the Metrics Server components
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.7.1/components.yaml
-
-# Step 4: Verify the installation
-kubectl get deployment metrics-server -n kube-system
-kubectl get pods -n kube-system | grep metrics-server
-
-# Step 5: Use the Metrics Server
-kubectl top nodes
-kubectl top pods --all-namespaces
-```
-
 If Metrics Server is working correctly, you should see resource usage data for nodes and pods.
 
 ### Summary
