@@ -55,7 +55,7 @@ EFK is a stack commonly used for log aggregation and analysis in Kubernetes envi
     - Wait for the domain to initialize. This process typically takes 15–30 minutes but can vary depending on configuration.
 
 15. **Access Endpoint:**
-    - Once initialized, note the domain endpoint (e.g., `https://search-my-domain.us-east-1.es.amazonaws.com`) from the General Information section.
+    - Once initialized, note the domain endpoint (e.g., `search-dev-es-zuiy5hqs7l4kp27kwpwkmkhvbu.us-east-1.es.amazonaws.com`) from the General Information section.
 
 
 ### Lab Session - Deploying Fluent Bit for Log Collection
