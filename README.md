@@ -93,7 +93,7 @@ If Metrics Server is working correctly, you should see resource usage data for n
    - **Definition**: Cluster Autoscaler adjusts the size of the cluster by adding or removing nodes based on the pending pods and resource utilization.
    - **Example Use Case**: If the cluster runs out of resources to schedule new pods, the Cluster Autoscaler can add more nodes to the cluster.
 
-### What is Horizontal Pod Autoscaling (HPA)
+# What is Horizontal Pod Autoscaling (HPA)
 
 - Horizontal Pod Autoscaling (HPA) automatically scales the number of pod replicas in a Kubernetes deployment, replica set, or stateful set based on observed CPU utilization, memory usage, or custom metrics.
 - HPA helps ensure that applications have the right amount of resources available to handle the current load.
