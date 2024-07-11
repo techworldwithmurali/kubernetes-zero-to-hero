@@ -11,6 +11,166 @@ EFK is a stack commonly used for log aggregation and analysis in Kubernetes envi
 
 ### Lab Session - Setting up Elasticsearch and Kibana in AWS
 
+### Lab Session - Deploying Fluent Bit for Log Collection
+
+#### Step 1: Create Namespace
+
+Create a namespace named `logging`:
+
+```bash
+kubectl create namespace logging
+```
+
+#### Step 2: Create the OIDC Provider for EKS Cluster
+
+Ensure that your EKS cluster has an OIDC provider configured. This is typically done during cluster creation or can be added later.
+
+#### Step 3: Create a Policy for Your Service Account
+
+Create an IAM policy named `dev-fluent-bit-iam-policy`:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "es:ESHttp*"
+            ],
+            "Resource": "arn:aws:es:us-east-1:714771635465:domain/dev-es",
+            "Effect": "Allow"
+        }
+    ]
+}
+```
+
+#### Step 4: Create an IAM Role and Attach the Policy for Your Service Account
+
+Create an IAM role named `dev-fluent-bit-iam-role` with a trust relationship for your EKS cluster's OIDC provider. Attach the `dev-fluent-bit-iam-policy` to this role.
+
+#### Step 5: Create the Service Account and Include the IAM Role Annotation
+
+Create a service account in Kubernetes with the IAM role annotation:
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app: fluent-bit
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::714771635465:role/dev-fluent-bit-iam-role
+  name: fluent-bit
+  namespace: logging
+```
+
+Apply the service account configuration:
+
+```bash
+kubectl apply -f fluent-bit-service-account.yaml
+```
+
+#### Step 6: Update the Trust Relationship of the IAM Role
+
+Update the trust relationship of the `dev-fluent-bit-iam-role` role:
+
+From:
+
+```json
+"oidc.eks.us-east-1.amazonaws.com/id/36768CCADCE3B1429AF675DA5E5304E1:aud": "sts.amazonaws.com"
+```
+
+To:
+
+```json
+"oidc.eks.us-east-1.amazonaws.com/id/36768CCADCE3B1429AF675DA5E5304E1:sub": "system:serviceaccount:logging:fluent-bit"
+```
+
+#### Step 7: Deploy Fluent Bit as a DaemonSet
+
+Create a DaemonSet manifest file named `fluentbit.yaml` and deploy it. Ensure the service account name and namespace are correct.
+
+```bash
+kubectl apply -f fluentbit.yaml
+```
+
+#### Step 8: Update Elasticsearch Security Roles Mapping
+
+Update the internal database of Elasticsearch security roles mapping for the 'all_access' role to include the IAM role:
+
+```bash
+curl -sS -u "admin:Admin@2580" -X PATCH https://search-dev-es-ujos6gbqlrsis3dsh4axnxlq5e.us-east-1.es.amazonaws.com/_opendistro/_security/api/rolesmapping/all_access?pretty -H 'Content-Type: application/json' -d '[{"op": "add", "path": "/backend_roles", "value": ["arn:aws:iam::714771635465:role/dev-fluent-bit-iam-role"]}]'
+```
+
+#### Step 9: Deploy a Sample Application
+
+Create a deployment manifest file for a sample application named `php-apache` and deploy it:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-apache
+spec:
+  selector:
+    matchLabels:
+      run: php-apache
+  template:
+    metadata:
+      labels:
+        run: php-apache
+    spec:
+      containers:
+      - name: php-apache
+        image: registry.k8s.io/hpa-example
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-apache
+  labels:
+    run: php-apache
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30000
+  selector:
+    run: php-apache
+```
+
+Apply the deployment and service:
+
+```bash
+kubectl apply -f php-apache-deployment.yaml
+```
+
+#### Step 10: Access the Application
+
+Perform port forwarding to access the application:
+
+```bash
+kubectl port-forward service/php-apache 8080:80
+```
+
+Access the application using the following URL:
+
+URL: [http://127.0.0.1:8080/](http://127.0.0.1:8080/)
+
+#### Step 11: Review Logs in the Kibana Dashboard
+
+Access the Kibana Dashboard to review the logs collected by Fluent Bit:
+
+URL: [https://search-dev-es-zuiy5hqs7l4kp27kwpwkmkhvbu.us-east-1.es.amazonaws.com/_dashboards](https://search-dev-es-zuiy5hqs7l4kp27kwpwkmkhvbu.us-east-1.es.amazonaws.com/_dashboards)
+
 #### Step 1: Deploy Elasticsearch on AWS
 
 Follow AWS documentation or use an Elasticsearch managed service (such as Amazon Elasticsearch Service) to deploy Elasticsearch. Ensure it is accessible within your AWS environment.
