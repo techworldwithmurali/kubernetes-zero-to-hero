@@ -198,9 +198,7 @@ php-apache   Deployment/php-apache   10%/50%    1         10        1          1
 
 #### Step 4: Generate Load to Test HPA
 
-To test the HPA, generate load on the deployment. You can use a simple load generator, such as a busy loop in a container, or a load testing tool like `hey` or `ab`.
-
-For example, you can run a busybox pod that continuously makes HTTP requests to the NGINX deployment:
+To see how the Horizontal Pod Autoscaler (HPA) reacts to increased load, you can set up a client Pod that continuously sends requests to your service (in this case, the php-apache service). This will generate load on the service, triggering the autoscaler to adjust the number of replicas based on the load.
 
 ```bash
 kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
