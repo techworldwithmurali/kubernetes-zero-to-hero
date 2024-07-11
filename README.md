@@ -75,8 +75,25 @@ kubectl top pods --all-namespaces
 
 If Metrics Server is working correctly, you should see resource usage data for nodes and pods.
 
+# What  is Autoscaling in Kubernetes
+- Autoscaling in Kubernetes is the process of automatically adjusting the number of running pods in a deployment or the resources allocated to a pod based on the current demand.
+- This ensures that applications can handle varying workloads efficiently without manual intervention, leading to optimal resource utilization and cost savings. Kubernetes supports several types of autoscaling:
 
-### Introduction to Horizontal Pod Autoscaling (HPA)
+### Types of Autoscaling in Kubernetes
+
+1. **Horizontal Pod Autoscaling (HPA)**:
+   - **Definition**: HPA automatically scales the number of pods in a deployment, replica set, or stateful set based on observed CPU utilization, memory usage, or other custom metrics.
+
+   - **Example Use Case**: If the CPU utilization of pods exceeds a defined threshold, HPA will increase the number of pods to handle the load.
+2. **Vertical Pod Autoscaling (VPA)**:
+   - **Definition**: VPA automatically adjusts the CPU and memory requests and limits for containers in a pod based on historical usage.
+   - **Example Use Case**: If a pod consistently uses more memory than initially requested, VPA will increase its memory allocation.
+
+3. **Cluster Autoscaler**:
+   - **Definition**: Cluster Autoscaler adjusts the size of the cluster by adding or removing nodes based on the pending pods and resource utilization.
+   - **Example Use Case**: If the cluster runs out of resources to schedule new pods, the Cluster Autoscaler can add more nodes to the cluster.
+
+### What is Horizontal Pod Autoscaling (HPA)
 
 - Horizontal Pod Autoscaling (HPA) automatically scales the number of pod replicas in a Kubernetes deployment, replica set, or stateful set based on observed CPU utilization, memory usage, or custom metrics.
 - HPA helps ensure that applications have the right amount of resources available to handle the current load.
