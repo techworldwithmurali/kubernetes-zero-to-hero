@@ -294,17 +294,6 @@ metadata:
 
 Replace `arn:aws:iam::338240650890:role/ca-role` with the IAM role ARN you created for the Cluster Autoscaler.
 
-You need to update the IAM role ARN in your deployment configuration to match the IAM role created for the Cluster Autoscaler.
-
-Add the following annotation in your deployment configuration:
-
-```yaml
-annotations:
-  eks.amazonaws.com/role-arn: arn:aws:iam::338240650890:role/ca-role
-```
-
-Replace `arn:aws:iam::338240650890:role/ca-role` with your specific IAM role ARN.
-
 #### Update the Cluster Autoscaler Image
 
 Ensure you are using the latest or appropriate version of the Cluster Autoscaler image for your Kubernetes version. Update the image in your deployment configuration:
