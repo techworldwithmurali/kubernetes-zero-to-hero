@@ -6,13 +6,20 @@
 
 ### Key Features and Functionality of Cluster Autoscaler:
 
-1. **Dynamic Scaling**: Cluster Autoscaler dynamically adjusts the number of nodes in a cluster based on the current workload. When pods cannot be scheduled due to resource constraints (such as insufficient CPU or memory), Cluster Autoscaler will provision additional nodes to accommodate the demand.
+1. **Dynamic Scaling**:
+   - Cluster Autoscaler dynamically adjusts the number of nodes in a cluster based on the current workload.
+   - When pods cannot be scheduled due to resource constraints (such as insufficient CPU or memory), Cluster Autoscaler will provision additional nodes to accommodate the demand.
 
-2. **Integration with Cloud Providers**: It integrates with cloud provider APIs to manage the lifecycle of virtual machines (VMs) or instances that form the Kubernetes nodes. This allows it to seamlessly add or remove nodes in response to workload changes.
+2. **Integration with Cloud Providers**:
+   - It integrates with cloud provider APIs to manage the lifecycle of virtual machines (VMs) or instances that form the Kubernetes nodes.
+   - This allows it to seamlessly add or remove nodes in response to workload changes.
 
-3. **Configuration**: Cluster Autoscaler can be configured with various parameters such as minimum and maximum node counts, node group settings, and scaling behavior thresholds. This flexibility allows operators to tailor autoscaling behavior to match specific workload patterns and cluster requirements.
+3. **Configuration**:
+   - Cluster Autoscaler can be configured with various parameters such as minimum and maximum node counts, node group settings, and scaling behavior thresholds.
+   - This flexibility allows operators to tailor autoscaling behavior to match specific workload patterns and cluster requirements.
 
-4. **Scale Down Considerations**: Cluster Autoscaler also includes safeguards to prevent premature scale-down events, ensuring that nodes are only removed when their pods can be safely evicted or rescheduled elsewhere.
+4. **Scale Down Considerations**:
+    - Cluster Autoscaler also includes safeguards to prevent premature scale-down events, ensuring that nodes are only removed when their pods can be safely evicted or rescheduled elsewhere.
 
 ### Deployment and Configuration:
 
