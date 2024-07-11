@@ -17,13 +17,6 @@
 3. **Scale Down Considerations**:
     - Cluster Autoscaler also includes safeguards to prevent premature scale-down events, ensuring that nodes are only removed when their pods can be safely evicted or rescheduled elsewhere.
 
-### Deployment and Configuration:
-
-Deploying Cluster Autoscaler typically involves setting up proper IAM roles or permissions for cloud provider APIs and configuring the autoscaler with appropriate parameters like:
-
-- `--max-nodes`: Maximum number of nodes that can be added to the cluster.
-- `--min-nodes`: Minimum number of nodes that should be maintained in the cluster.
-- `--scale-down-delay`: Delay before a node is considered for termination after it becomes underutilized.
 ### Benefits:
 
 - **Scalability**: Ensures that the Kubernetes cluster can handle varying workloads without manual intervention.
