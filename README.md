@@ -1,6 +1,6 @@
 #### INSTRUCTOR DETAILS
 
-| Information          | Details                                                                      |
+|Information           | Details                                                                      |
 |----------------------|------------------------------------------------------------------------------|
 | Name                 | Moole Muralidhara Reddy                                                      |
 | Email                | techworldwithmurali@gmail.com                                                |
