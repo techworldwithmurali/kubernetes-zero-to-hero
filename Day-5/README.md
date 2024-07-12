@@ -223,7 +223,8 @@ spec:
 
 ### How ResourceQuota Works
 
-When a ResourceQuota is applied to a namespace, it enforces the defined resource limits and ensures that the sum of resource requests and limits across all pods and containers in the namespace does not exceed the specified values. If an attempt is made to create or update a resource (such as a pod) that would exceed these limits, the operation will be denied.
+- When a ResourceQuota is applied to a namespace, it enforces the defined resource limits and ensures that the sum of resource requests and limits across all pods and containers in the namespace does not exceed the specified values.
+- If an attempt is made to create or update a resource (such as a pod) that would exceed these limits, the operation will be denied.
 
 # LimitRange
 In Kubernetes, a **LimitRange** is a resource policy that you can apply to a namespace to enforce constraints on resource usage for containers and pods. LimitRanges are used to specify default resource limits and request values, as well as to set maximum and minimum constraints for resources such as CPU and memory.
