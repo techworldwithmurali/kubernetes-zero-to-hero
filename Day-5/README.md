@@ -227,7 +227,8 @@ spec:
 - If an attempt is made to create or update a resource (such as a pod) that would exceed these limits, the operation will be denied.
 
 # LimitRange
-In Kubernetes, a **LimitRange** is a resource policy that you can apply to a namespace to enforce constraints on resource usage for containers and pods. LimitRanges are used to specify default resource limits and request values, as well as to set maximum and minimum constraints for resources such as CPU and memory.
+- In Kubernetes, a **LimitRange** is a resource policy that you can apply to a namespace to enforce constraints on resource usage for containers and pods.
+- LimitRanges are used to specify default resource limits and request values, as well as to set maximum and minimum constraints for resources such as CPU and memory.
 
 ## Purpose of LimitRange
 
