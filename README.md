@@ -171,6 +171,7 @@ kubectl apply -f external-dns.yaml
   --policy=delete
 ```
   This policy will delete DNS records that are associated with resources in the Kubernetes cluster but are no longer present. It can be more aggressive in removing outdated records.
+
 ```
 
 
