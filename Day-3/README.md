@@ -80,7 +80,10 @@ KeyPair Name: dev
 ```xml
 Name: dev-cluster-role
 ```
-
+Attach the below policies for the cluster Role:
+```xml
+AmazonEKSClusterPolicy
+```
 ### Step 5: Create the AWS EKS Cluster
 ```xml
 Cluster Name: dev-cluster
