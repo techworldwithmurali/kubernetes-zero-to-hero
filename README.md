@@ -1,4 +1,4 @@
-                       INSTRUCTOR DETAILS
+#### INSTRUCTOR DETAILS
 
 Please find below the instructor's contact information:
 
