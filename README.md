@@ -7,7 +7,7 @@
 - Advantages of Kubernetes
 - Kubernetes Architecture
 
-## Day 2 - CLI Installation
+## Day 2 - Tools Installation
 
 - Installation of AWS CLI in Windows
 - Installation of AWS CLI in Linux
