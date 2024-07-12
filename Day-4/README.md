@@ -296,7 +296,7 @@ spec:
 To update the deployment, you can modify the `nginx-deployment.yaml` file. For example, change the image version:
 
 ```yaml
-image: nginx:1.16.0
+image: nginx:1.14.2
 ```
 
 Then, apply the changes:
