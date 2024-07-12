@@ -136,9 +136,9 @@ spec:
 
 4. **Access the Service Using NodePort:**
    - Get the NodePort allocated (let's assume `NodePort: 30080`):
-     ```bash
-kubectl get services my-app-service
-     ```
+   ```bash
+      kubectl get services my-app-service
+   ```
    - Access the service from outside the cluster using `<NodeIP>:30080`.
 
 # LoadBalancer
