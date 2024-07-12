@@ -174,7 +174,7 @@ kubectl apply -f external-dns.yaml
 
 
 ## Step 6: Deploy a sample application and Ingress, and verify whether the record is automatically created in Route 53 or not.
-# Deploy Sample Ingress Resource With SSL
+### Deploy Sample Ingress Resource With SSL
 
 **Prerequisites:**
 
