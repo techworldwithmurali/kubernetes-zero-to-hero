@@ -313,7 +313,7 @@ https://nginx-app.techworldwithmurali.in
 - **Service (`service.yaml`)**: Exposes the nginx deployment on port 80 using a NodePort type service.
 - **Ingress (`ingress.yaml`)**: Defines an Ingress resource named `nginx-app` in the `dev` namespace, specifying that requests to `dev.techworldwithmurali.in/index.html` should route to the `nginx-app` service.
 
-Make sure to replace `dev.techworldwithmurali.in` with your actual domain name or DNS name pointing to your Kubernetes cluster.
+Make sure to replace `nginx-app.techworldwithmurali.in` with your actual domain name or DNS name pointing to your Kubernetes cluster.
 
 After applying these configurations, Kubernetes will deploy the nginx application, expose it via a service, and configure the Ingress to route traffic to it based on the specified rules.
 
