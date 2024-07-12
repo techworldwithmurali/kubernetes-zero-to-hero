@@ -79,7 +79,7 @@ spec:
     spec:
       containers:
       - name: web-application
-        image: web-app:1
+        image: mmreddy424/web-application:latest
         ports:
         - containerPort: 8080
 ```
