@@ -169,9 +169,10 @@ kubectl apply -f external-dns.yaml
 - **delete:**
   ```bash
   --policy=delete
-  ```
+```
   This policy will delete DNS records that are associated with resources in the Kubernetes cluster but are no longer present. It can be more aggressive in removing outdated records.
 ```
+-----
 ## Step 6: Deploy a sample application and Ingress, and verify whether the record is automatically created in Route 53 or not.
 ```yaml
 ---
