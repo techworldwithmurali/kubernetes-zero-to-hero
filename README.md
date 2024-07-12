@@ -2,16 +2,6 @@
   <strong><h3>INSTRUCTOR DETAILS</h3></strong>
 </p>
 
-<p align="center">
-  Please find below the instructor's contact information:
-</p>
-
-<p align="center">
-  - **Name:** Moole Muralidhara Reddy <br>
-  - **Email:** techworldwithmurali@gmail.com <br>
-  - **Website:** [Tech World with Murali](https://www.techworldwithmurali.com/) <br>
-  - **LinkedIn profile:** [Moole Muralidhara Reddy on LinkedIn](https://www.linkedin.com/in/moole-muralidhara-reddy) <br>
-</p>
 ### INSTRUCTOR DETAILS
 
 Please find below the instructor's contact information:
