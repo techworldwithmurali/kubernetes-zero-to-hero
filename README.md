@@ -198,9 +198,9 @@ spec:
 4. **Get the External IP Address (if applicable):**
    - Depending on your cloud provider, the external IP will be allocated.
    - Get the external IP using:
-     ```bash
+   ```bash
     kubectl get services my-app-service
-     ```
+    ```
 
 5. **Access the Service via Load Balancer:**
    - Use the external IP to access the deployed application.
