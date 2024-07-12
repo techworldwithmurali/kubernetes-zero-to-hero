@@ -146,7 +146,32 @@ spec:
 ```bash
 kubectl apply -f external-dns.yaml
 ```
+### ExternalDNS Policies
 
+- **upsert-only:**
+  ```bash
+  --policy=upsert-only
+  ```
+  With this policy, ExternalDNS will only create or update DNS records but will not delete any existing records. It's a safe option to ensure that ExternalDNS doesn't remove records that are not present in the Kubernetes cluster.
+
+- **sync:**
+  ```bash
+  --policy=sync
+  ```
+  This policy ensures that the DNS records in the DNS provider match the current state of the Kubernetes resources. It will create, update, or delete DNS records based on the current state of the resources.
+
+- **create-only:**
+  ```bash
+  --policy=create-only
+  ```
+  With this policy, ExternalDNS will only create new DNS records. It won't update or delete existing records. This can be useful when you want ExternalDNS to be more cautious and avoid making changes to existing records.
+
+- **delete:**
+  ```bash
+  --policy=delete
+  ```
+  This policy will delete DNS records that are associated with resources in the Kubernetes cluster but are no longer present. It can be more aggressive in removing outdated records.
+```
 ## Step 6: Deploy a sample application and Ingress, and verify whether the record is automatically created in Route 53 or not.
 ```yaml
 ---
