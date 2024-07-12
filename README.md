@@ -1,8 +1,4 @@
-<p align="center">
-  <strong><h3>INSTRUCTOR DETAILS</h3></strong>
-</p>
-
-### INSTRUCTOR DETAILS
+                        ### INSTRUCTOR DETAILS
 
 Please find below the instructor's contact information:
 
