@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-config
+  namespace: dev
+data:
+  DATABASE_URL: "db.techworldwithmurali.com"
+  API_KEY: "jhgdjhhj5dsd2d325ad355da535da23543da35ad"
