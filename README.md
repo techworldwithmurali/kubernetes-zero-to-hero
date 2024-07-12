@@ -1,9 +1,11 @@
 #### INSTRUCTOR DETAILS
 
-| **Name**                | **Email**                      | **Website**                                   | **LinkedIn Profile**                                              |
-|-------------------------|--------------------------------|-----------------------------------------------|--------------------------------------------------------------------|
-| Moole Muralidhara Reddy | techworldwithmurali@gmail.com | [Tech World with Murali](https://www.techworldwithmurali.com/) | [Moole Muralidhara Reddy on LinkedIn](https://www.linkedin.com/in/moole-muralidhara-reddy) |
-
+| Information           | Details                                                                 |
+|-----------------------|-------------------------------------------------------------------------|
+| **Name:**             | Moole Muralidhara Reddy                                                 |
+| **Email:**            | techworldwithmurali@gmail.com                                           |
+| **Website:**          | [Tech World with Murali](https://www.techworldwithmurali.com/)          |
+| **LinkedIn profile:** | [Moole Muralidhara Reddy on LinkedIn](https://www.linkedin.com/in/moole-muralidhara-reddy) |
 #### INSTRUCTOR DETAILS
 
 Please find below the instructor's contact information:
