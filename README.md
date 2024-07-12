@@ -137,7 +137,7 @@ spec:
 4. **Access the Service Using NodePort:**
    - Get the NodePort allocated (let's assume `NodePort: 30080`):
      ```bash
-     kubectl get services nginx-nodeport-service
+kubectl get services my-app-service
      ```
    - Access the service from outside the cluster using `<NodeIP>:30080`.
 
@@ -199,7 +199,7 @@ spec:
    - Depending on your cloud provider, the external IP will be allocated.
    - Get the external IP using:
      ```bash
-     kubectl get services nginx-loadbalancer-service
+    kubectl get services my-app-service
      ```
 
 5. **Access the Service via Load Balancer:**
