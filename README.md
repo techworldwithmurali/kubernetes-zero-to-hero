@@ -72,11 +72,11 @@ Preparing for an EKS upgrade involves several critical steps to ensure a smooth 
 
 ### Lab Session - Upgrading AWS EKS
 
-1. Update EKS Control Plane
-2. Update the Worker node versions
-3. Validate the both EKS cluster and worker nodes
-4. Validate the Kubernetes add-ons running properly or not
-5. Validate the metric server, cluster autoscaler pods are running or not 
-6. Validate the applications are working as we expected or not
-7. Inform to application to validate the applications therir end.
-8. WE have to monitor couple of days and if we get any issue needs to fix it 
+1. Update the EKS version.
+2. Update the worker node versions.
+3. Validate both the EKS cluster and worker nodes.
+4. Validate that the Kubernetes add-ons are running properly.
+5. Validate that the metric server and cluster autoscaler pods are running.
+6. Validate that the applications pods are working as expected.
+7. Inform the application team to validate the applications on their end.
+8. Monitor for a couple of days, and if any issues arise, address them accordingly. 
