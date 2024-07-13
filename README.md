@@ -72,82 +72,11 @@ Preparing for an EKS upgrade involves several critical steps to ensure a smooth 
 
 ### Lab Session - Upgrading AWS EKS
 
-#### Step 1: Update EKS Control Plane
-
-1. **Check Current Version**:
-   ```bash
-   aws eks describe-cluster --name <cluster-name> --query cluster.version --output text
-   ```
-
-2. **Update EKS Cluster**:
-   - Initiate the update of the control plane to a new Kubernetes version. Replace `<cluster-name>` and `<new-k8s-version>` with appropriate values.
-
-   ```bash
-   aws eks update-cluster-version --name <cluster-name> --kubernetes-version <new-k8s-version>
-   ```
-
-3. **Monitor the Upgrade Process**:
-   - The upgrade process can take some time. Monitor the status of the upgrade.
-
-   ```bash
-   aws eks describe-cluster --name <cluster-name> --query cluster.status --output text
-   ```
-
-4. **Verify Control Plane Upgrade**:
-   - Once the control plane upgrade is complete, verify the new version.
-
-   ```bash
-   aws eks describe-cluster --name <cluster-name> --query cluster.version --output text
-   ```
-
-#### Step 2: Update Worker Nodes
-
-1. **Update Node Group Configuration**:
-   - Create a new Launch Template or update the existing one with the new AMI ID that corresponds to the new Kubernetes version.
-
-2. **Update Managed Node Group**:
-   - For managed node groups, initiate the update to use the new AMI.
-
-   ```bash
-   aws eks update-nodegroup-version --cluster-name <cluster-name> --nodegroup-name <nodegroup-name> --release-version <new-eks-release-version>
-   ```
-
-3. **Verify Node Group Update**:
-   - Check the status of the node group update.
-
-   ```bash
-   aws eks describe-nodegroup --cluster-name <cluster-name> --nodegroup-name <nodegroup-name> --query updateStatus --output text
-   ```
-
-4. **Drain and Terminate Old Nodes**:
-   - Drain the old nodes to move workloads to new nodes, then terminate the old nodes.
-
-   ```bash
-   kubectl drain <old-node-name> --ignore-daemonsets --delete-local-data
-   aws autoscaling terminate-instance-in-auto-scaling-group --instance-id <instance-id> --should-decrement-desired-capacity
-   ```
-
-5. **Verify Node Replacement**:
-   - Ensure new nodes are up and running, and workloads are running as expected.
-
-   ```bash
-   kubectl get nodes
-   kubectl get pods --all-namespaces
-   ```
-
-#### Step 3: Validate the Upgrade
-
-1. **Check Cluster Health**:
-   - Ensure all nodes are in a ready state and no pods are in a crash loop or pending state.
-
-   ```bash
-   kubectl get nodes
-   kubectl get pods --all-namespaces
-   ```
-
-2. **Run Functional Tests**:
-   - Run your application tests to ensure that everything is working as expected after the upgrade.
-
-### Conclusion
-
-Upgrading an EKS cluster involves several steps, from updating the control plane to upgrading the worker nodes. Proper preparation and careful execution of each step will help ensure a smooth upgrade process. Make sure to monitor the cluster throughout the upgrade and validate the functionality of your applications post-upgrade.
+1. Update EKS Control Plane
+2. Update the Worker node versions
+3. Validate the both EKS cluster and worker nodes
+4. Validate the Kubernetes add-ons running properly or not
+5. Validate the metric server, cluster autoscaler pods are running or not 
+6. Validate the applications are working as we expected or not
+7. Inform to application to validate the applications therir end.
+8. WE have to monitor couple of days and if we get any issue needs to fix it 
