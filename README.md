@@ -1,7 +1,9 @@
 #### Complete Kubernetes Course: Beginner to Advanced with Hands-On Projects
 
 **Course Description:**  
-This 25-day hands-on course teaches you how to deploy, manage, and troubleshoot Kubernetes clusters on AWS. Starting with basic concepts, you’ll progress through tool installations, EKS setup, deployments, scaling, networking, and monitoring. Key topics include Helm, RBAC, logging (EFK), Prometheus, and advanced troubleshooting techniques. Practical projects guide you through real-world use cases, preparing you to manage Kubernetes environments efficiently on AWS.
+- This comprehensive 25-day course will teach you how to deploy, manage, and troubleshoot Kubernetes clusters on AWS, from foundational concepts to advanced techniques.
+- You’ll start with the basics, progressing through the installation of essential tools, setting up Amazon EKS, and deploying applications.
+- As you advance, you'll dive into topics such as scaling, networking, and monitoring.
 
 ## Day 1 - Kubernetes Overview
 
