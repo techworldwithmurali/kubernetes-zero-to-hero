@@ -36,7 +36,7 @@ eksctl create nodegroup \
 eksctl scale nodegroup \
   --cluster infra-cluster \
   --region us-east-1 \
-  --name spr-nodes \
+  --name infra-cluster-nodes \
   --nodes 1 \
   --nodes-min 1 \
   --nodes-max 1
@@ -57,7 +57,7 @@ eksctl upgrade cluster \
 eksctl upgrade nodegroup \
   --cluster infra-cluster \
   --region us-east-1 \
-  --name spr-nodes \
+  --name infra-cluster-nodes \
   --kubernetes-version 1.31
 ```
 
@@ -67,7 +67,7 @@ eksctl upgrade nodegroup \
 eksctl delete nodegroup \
   --cluster infra-cluster \
   --region us-east-1 \
-  --name spr-nodes
+  --name infra-cluster-nodes
 ```
 
 ## Delete the Cluster
