@@ -8,7 +8,8 @@ eksctl create cluster \
   --version 1.30 \
   --vpc-private-subnets subnet-0ab8d3e404d04be99,subnet-0140c441a31b472a4 \
   --without-nodegroup \
-  --with-oidc
+  --with-oidc \
+  --profile Infra
 ```
 - **`create cluster`**: Initializes and provisions a new EKS cluster.
 - **`--name infra-cluster`**: Assigns the cluster a name, `infra-cluster`.
@@ -33,7 +34,8 @@ eksctl create nodegroup \
   --nodes-min 2 \
   --nodes-max 5 \
   --node-type t2.micro \
-  --managed
+  --managed \
+  --profile Infra
 ```
 - **`create nodegroup`**: Provisions a worker node group for the specified cluster.
 - **`--cluster infra-cluster`**: Associates the node group with the `infra-cluster` EKS cluster.
@@ -56,7 +58,8 @@ eksctl scale nodegroup \
   --name infra-cluster-nodes \
   --nodes 1 \
   --nodes-min 1 \
-  --nodes-max 1
+  --nodes-max 1 \
+  --profile Infra
 ```
 - **`scale nodegroup`**: Adjusts the number of nodes in the specified node group.
 - **`--nodes 1`**: Sets the desired number of nodes to 1.
@@ -69,7 +72,8 @@ eksctl scale nodegroup \
 eksctl upgrade cluster \
   --name infra-cluster \
   --region us-east-1 \
-  --version 1.31
+  --version 1.31 \
+  --profile Infra
 ```
 - **`upgrade cluster`**: Upgrades the Kubernetes control plane version.
 - **`--version 1.31`**: Specifies the new Kubernetes version to upgrade to.
@@ -82,7 +86,8 @@ eksctl upgrade nodegroup \
   --cluster infra-cluster \
   --region us-east-1 \
   --name infra-cluster-nodes \
-  --kubernetes-version 1.31
+  --kubernetes-version 1.31 \
+  --profile Infra
 ```
 - **`upgrade nodegroup`**: Upgrades the Kubernetes version of the node group.
 - **`--kubernetes-version 1.31`**: Specifies the target Kubernetes version for the nodes.
@@ -94,7 +99,8 @@ eksctl upgrade nodegroup \
 eksctl delete nodegroup \
   --cluster infra-cluster \
   --region us-east-1 \
-  --name infra-cluster-nodes
+  --name infra-cluster-nodes \
+  --profile Infra
 ```
 - **`delete nodegroup`**: Removes the specified node group from the cluster.
 - **`--name infra-cluster-nodes`**: Specifies the node group to delete.
@@ -105,7 +111,8 @@ eksctl delete nodegroup \
 ```bash
 eksctl delete cluster \
   --name infra-cluster \
-  --region us-east-1
+  --region us-east-1 \
+  --profile Infra
 ```
 - **`delete cluster`**: Deletes the entire EKS cluster, including associated resources such as control plane and OIDC provider.
 - **`--name infra-cluster`**: Specifies the cluster to delete.
