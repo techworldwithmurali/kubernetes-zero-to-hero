@@ -6,10 +6,10 @@ eksctl create cluster \
   --name infra-cluster \
   --region us-east-1 \
   --version 1.30 \
-  --vpc-private-subnets subnet-0ab8d3e404d04be99,subnet-0140c441a31b472a4 \
+  --vpc-private-subnets subnet-062fe29906f128e40,subnet-06424bdeed3ba25c6 \
   --without-nodegroup \
   --with-oidc \
-  --profile Infra
+  --profile infra
 ```
 - **`create cluster`**: Initializes and provisions a new EKS cluster.
 - **`--name infra-cluster`**: Assigns the cluster a name, `infra-cluster`.
@@ -30,12 +30,12 @@ eksctl create nodegroup \
   --nodes 2 \
   --node-private-networking \
   --ssh-access \
-  --ssh-public-key Infra \
+  --ssh-public-key infra \
   --nodes-min 2 \
   --nodes-max 5 \
   --node-type t2.micro \
   --managed \
-  --profile Infra
+  --profile infra
 ```
 - **`create nodegroup`**: Provisions a worker node group for the specified cluster.
 - **`--cluster infra-cluster`**: Associates the node group with the `infra-cluster` EKS cluster.
@@ -43,7 +43,7 @@ eksctl create nodegroup \
 - **`--nodes 2`**: Sets the initial number of nodes to 2.
 - **`--node-private-networking`**: Ensures nodes are launched in private subnets, enhancing security.
 - **`--ssh-access`**: Allows SSH access to the nodes.
-- **`--ssh-public-key Infra`**: Specifies the SSH key pair (`Infra`) to access the nodes.
+- **`--ssh-public-key infra`**: Specifies the SSH key pair (`infra`) to access the nodes.
 - **`--nodes-min 2`, `--nodes-max 5`**: Sets the auto-scaling range for the node group.
 - **`--node-type t2.micro`**: Uses the `t2.micro` instance type for nodes.
 - **`--managed`**: Creates a managed node group, where AWS manages upgrades and scaling.
@@ -59,7 +59,7 @@ eksctl scale nodegroup \
   --nodes 1 \
   --nodes-min 1 \
   --nodes-max 1 \
-  --profile Infra
+  --profile infra
 ```
 - **`scale nodegroup`**: Adjusts the number of nodes in the specified node group.
 - **`--nodes 1`**: Sets the desired number of nodes to 1.
@@ -73,7 +73,7 @@ eksctl upgrade cluster \
   --name infra-cluster \
   --region us-east-1 \
   --version 1.31 \
-  --profile Infra
+  --profile infra
 ```
 - **`upgrade cluster`**: Upgrades the Kubernetes control plane version.
 - **`--version 1.31`**: Specifies the new Kubernetes version to upgrade to.
@@ -87,7 +87,7 @@ eksctl upgrade nodegroup \
   --region us-east-1 \
   --name infra-cluster-nodes \
   --kubernetes-version 1.31 \
-  --profile Infra
+  --profile infra
 ```
 - **`upgrade nodegroup`**: Upgrades the Kubernetes version of the node group.
 - **`--kubernetes-version 1.31`**: Specifies the target Kubernetes version for the nodes.
@@ -100,7 +100,7 @@ eksctl delete nodegroup \
   --cluster infra-cluster \
   --region us-east-1 \
   --name infra-cluster-nodes \
-  --profile Infra
+  --profile infra
 ```
 - **`delete nodegroup`**: Removes the specified node group from the cluster.
 - **`--name infra-cluster-nodes`**: Specifies the node group to delete.
@@ -112,7 +112,7 @@ eksctl delete nodegroup \
 eksctl delete cluster \
   --name infra-cluster \
   --region us-east-1 \
-  --profile Infra
+  --profile infra
 ```
 - **`delete cluster`**: Deletes the entire EKS cluster, including associated resources such as control plane and OIDC provider.
 - **`--name infra-cluster`**: Specifies the cluster to delete.
