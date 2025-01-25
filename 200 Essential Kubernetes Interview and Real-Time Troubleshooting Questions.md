@@ -1683,10 +1683,6 @@ What is the purpose of `kubectl apply` command in Kubernetes?
 
 ---
 
-Here are a few more unique Kubernetes-related questions that could be useful, including scenarios that might have been missed in the first 150:
-
----
-
 ### 151. Question:  
 What is the difference between `kubectl create` and `kubectl apply`?  
 - **A. `kubectl create` creates resources, whereas `kubectl apply` ensures that the current state matches the desired state**  
@@ -1963,10 +1959,6 @@ Which of the following commands is used to expose a pod as a service in Kubernet
 - **D. kubectl expose node <node-name>**  
 **Correct Answer:** **A. kubectl expose pod <pod-name>**  
 **Explanation:** The `kubectl expose pod <pod-name>` command is used to expose an individual pod to the network, typically for internal service discovery or testing purposes.
-
----
-
-Here are additional Kubernetes-related questions, continuing from the previous list:
 
 ---
 
