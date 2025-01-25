@@ -221,10 +221,6 @@ What does a `DaemonSet` ensure?
 
 ---
 
-Here’s the continuation of the Kubernetes question set, along with answers and explanations:  
-
----
-
 ### 21. Question:  
 Which command is used to create a ConfigMap in Kubernetes?  
 - **A. kubectl create configmap**  
@@ -390,10 +386,6 @@ Which Kubernetes object defines a network policy for a pod?
 
 ---
 
-Here’s the continuation of the Kubernetes question set with answers and explanations:  
-
----
-
 ### 36. Question:  
 Which command is used to label a node in Kubernetes?  
 - **A. kubectl add label <node-name> <key>=<value>**  
@@ -556,10 +548,6 @@ What is the `kubeadm` tool primarily used for?
 - **D. Monitoring pods and nodes**  
 **Correct Answer:** **B. Creating Kubernetes clusters**  
 **Explanation:** `kubeadm` simplifies setting up a Kubernetes cluster by initializing and configuring control plane components.  
-
----
-
-Here’s the continuation of the Kubernetes question set:  
 
 ---
 
@@ -1235,10 +1223,6 @@ What is the purpose of a `PodAffinity` in Kubernetes?
 
 ---
 
-Here’s the continuation of the Kubernetes question set:
-
----
-
 ### 111. Question:  
 What is the purpose of the `kubectl logs` command?  
 - **A. To view the logs from a Kubernetes resource**  
@@ -1569,10 +1553,6 @@ What is the purpose of `VerticalPodAutoscaler` in Kubernetes?
 
 ---
 
-Here’s the continuation of the Kubernetes interview and real-time questions:
-
----
-
 ### 141. Question:  
 Which Kubernetes object ensures that a specific number of identical pods are running at any given time, and can automatically create or delete pods to meet this requirement?  
 - **A. Deployment**  
@@ -1823,10 +1803,6 @@ What are `Kubernetes annotations` typically used for?
 - **D. To configure networking between pods**  
 **Correct Answer:** **B. To store non-identifying metadata about resources**  
 **Explanation:** Annotations are key-value pairs used to store non-identifying metadata for resources, such as timestamps, configuration details, or information for external tools.
-
----
-
-Certainly! Here’s the continuation with more Kubernetes questions:
 
 ---
 
