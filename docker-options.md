@@ -1676,3 +1676,722 @@ D. Containers offer full virtualization
 **Explanation:** Containers share the host OS kernel and are more lightweight than virtual machines, which require their own OS.
 
 ---
+
+### 141. How can you remove a stopped container in Docker?
+
+A. `docker remove <container_name>`  
+B. `docker rm <container_name>`  
+C. `docker delete <container_name>`  
+D. `docker stop <container_name>`  
+
+**Correct Answer:** B. `docker rm <container_name>`  
+**Explanation:** The `docker rm` command removes a stopped container from the system.
+
+---
+
+### 142. What is Docker's "host network mode"?
+
+A. A container connects directly to the host's network stack  
+B. A container gets a virtual IP separate from the host  
+C. A container is connected to a bridge network  
+D. A container cannot communicate with the host network  
+
+**Correct Answer:** A. A container connects directly to the host's network stack  
+**Explanation:** In "host" network mode, the container shares the same network namespace as the host, allowing direct access to the host’s network.
+
+---
+
+### 143. What is the purpose of the `docker exec -it` command?
+
+A. To interact with a running container in the foreground  
+B. To create a new container interactively  
+C. To stop and remove a running container  
+D. To execute a command inside a running container interactively  
+
+**Correct Answer:** D. To execute a command inside a running container interactively  
+**Explanation:** The `-it` flags allow you to run a command interactively inside a running container.
+
+---
+
+### 144. What does Docker use to store persistent data for containers?
+
+A. Containers store all data internally by default  
+B. Docker volumes  
+C. Docker images  
+D. Docker networks  
+
+**Correct Answer:** B. Docker volumes  
+**Explanation:** Docker volumes are used to store persistent data that needs to persist even if the container is deleted or recreated.
+
+---
+
+### 145. What is the difference between `docker exec` and `docker attach`?
+
+A. `docker exec` runs a command inside the container, while `docker attach` connects to an existing process inside the container  
+B. `docker exec` stops the container, while `docker attach` restarts the container  
+C. `docker exec` is used to view logs, while `docker attach` runs processes  
+D. There is no difference between the two commands  
+
+**Correct Answer:** A. `docker exec` runs a command inside the container, while `docker attach` connects to an existing process inside the container  
+**Explanation:** `docker exec` allows you to run a new command inside the container, while `docker attach` allows you to interact with the main process of a running container.
+
+---
+
+### 146. How can you access a shell inside a Docker container?
+
+A. `docker exec -it <container_name> bash`  
+B. `docker attach <container_name> shell`  
+C. `docker exec <container_name> shell`  
+D. `docker run -it <container_name> bash`  
+
+**Correct Answer:** A. `docker exec -it <container_name> bash`  
+**Explanation:** The `docker exec -it <container_name> bash` command opens a shell (bash) inside a running container.
+
+---
+
+### 147. What is Docker's "swarm mode"?
+
+A. A mode that allows you to run Docker containers in a Kubernetes-like environment  
+B. A mode that enables the orchestration of multiple Docker hosts as a single cluster  
+C. A mode that connects Docker containers to cloud networks  
+D. A mode that creates isolated environments for each container  
+
+**Correct Answer:** B. A mode that enables the orchestration of multiple Docker hosts as a single cluster  
+**Explanation:** Docker Swarm is Docker's native clustering and orchestration solution that allows you to manage multiple Docker hosts as a single cluster.
+
+---
+
+### 148. What does the `docker exec -d` flag do?
+
+A. It runs a command inside the container in the background  
+B. It runs a command inside the container and immediately detaches the terminal  
+C. It detaches the container from the host system  
+D. It runs the container in detached mode  
+
+**Correct Answer:** A. It runs a command inside the container in the background  
+**Explanation:** The `-d` flag in `docker exec` runs a command inside the container in the background without blocking the terminal.
+
+---
+
+### 149. How can you ensure that Docker containers can communicate securely across different machines in a swarm?
+
+A. Use Docker's default bridge network  
+B. Use Docker Swarm's overlay network  
+C. Configure a host network between containers  
+D. Use Docker Compose to define network rules  
+
+**Correct Answer:** B. Use Docker Swarm's overlay network  
+**Explanation:** Docker Swarm’s overlay network enables secure communication between containers across multiple Docker hosts in a swarm cluster.
+
+---
+
+### 150. What is the purpose of the `docker volume ls` command?
+
+A. To list the containers using a particular volume  
+B. To list all available Docker volumes  
+C. To list the networks associated with a volume  
+D. To list the images that use a specific volume  
+
+**Correct Answer:** B. To list all available Docker volumes  
+**Explanation:** The `docker volume ls` command lists all Docker volumes that are currently available.
+
+---
+
+### 151. What does the `docker load` command do?
+
+A. Loads a Docker image from a tarball into the Docker repository  
+B. Loads a Docker container from a tarball into a running state  
+C. Loads system configurations into Docker  
+D. Loads a Docker image from the Docker Hub  
+
+**Correct Answer:** A. Loads a Docker image from a tarball into the Docker repository  
+**Explanation:** The `docker load` command is used to load a Docker image from a tarball into Docker’s local image repository.
+
+---
+
+### 152. Which command would you use to see detailed information about a Docker container?
+
+A. `docker info <container_name>`  
+B. `docker inspect <container_name>`  
+C. `docker details <container_name>`  
+D. `docker describe <container_name>`  
+
+**Correct Answer:** B. `docker inspect <container_name>`  
+**Explanation:** The `docker inspect` command provides detailed information about a container’s configuration and state.
+
+---
+
+### 153. How can you run a Docker container in interactive mode?
+
+A. `docker run --interactive <image_name>`  
+B. `docker exec -it <container_name>`  
+C. `docker run -it <image_name>`  
+D. `docker exec --interactive <container_name>`  
+
+**Correct Answer:** C. `docker run -it <image_name>`  
+**Explanation:** The `-it` flag allows you to run a Docker container in interactive mode, providing a terminal interface to the container.
+
+---
+
+### 154. How do you update an existing Docker image?
+
+A. `docker build -t <new_image_name>`  
+B. `docker commit <container_name> <new_image_name>`  
+C. `docker pull <image_name>`  
+D. `docker upgrade <image_name>`  
+
+**Correct Answer:** B. `docker commit <container_name> <new_image_name>`  
+**Explanation:** To update an existing image, you commit changes from a running container to a new image using `docker commit`.
+
+---
+
+### 155. What is the `docker ps -a` command used for?
+
+A. To list all Docker containers that are currently running  
+B. To show logs for running containers  
+C. To list all containers, including both running and stopped containers  
+D. To show the resource usage of all containers  
+
+**Correct Answer:** C. To list all containers, including both running and stopped containers  
+**Explanation:** The `docker ps -a` command lists all containers, regardless of whether they are running or stopped.
+
+---
+
+### 156. What is the difference between `docker pull` and `docker push`?
+
+A. `docker pull` retrieves an image from a registry, while `docker push` sends an image to a registry  
+B. `docker pull` creates a new image, while `docker push` updates an existing image  
+C. `docker pull` runs the image, while `docker push` stops it  
+D. There is no difference between the two commands  
+
+**Correct Answer:** A. `docker pull` retrieves an image from a registry, while `docker push` sends an image to a registry  
+**Explanation:** `docker pull` downloads an image from a Docker registry, while `docker push` uploads an image to a registry.
+
+---
+
+### 157. How can you remove a Docker image?
+
+A. `docker delete <image_name>`  
+B. `docker rmi <image_name>`  
+C. `docker rm <image_name>`  
+D. `docker image remove <image_name>`  
+
+**Correct Answer:** B. `docker rmi <image_name>`  
+**Explanation:** The `docker rmi` command removes a Docker image from the local Docker repository.
+
+---
+
+### 158. What is the purpose of `docker-compose`?
+
+A. To build Docker images from scratch  
+B. To manage multi-container Docker applications  
+C. To configure Docker's network settings  
+D. To monitor Docker container health  
+
+**Correct Answer:** B. To manage multi-container Docker applications  
+**Explanation:** `docker-compose` allows you to define and run multi-container Docker applications using a simple YAML configuration file.
+
+---
+
+### 159. What happens when you run a Docker container with the `--rm` flag?
+
+A. The container is removed after it stops  
+B. The container is given higher resource limits  
+C. The container is run in detached mode  
+D. The container cannot communicate with other containers  
+
+**Correct Answer:** A. The container is removed after it stops  
+**Explanation:** The `--rm` flag ensures that the container is automatically removed once it stops running.
+
+---
+
+### 160. What is the primary purpose of Docker’s `docker build` command?
+
+A. To create a Docker image from a Dockerfile  
+B. To download an image from the Docker registry  
+C. To start a Docker container from an image  
+D. To remove unused Docker images  
+
+**Correct Answer:** A. To create a Docker image from a Dockerfile  
+**Explanation:** The `docker build` command is used to create a Docker image from a Dockerfile, which contains instructions on how to build the image.
+
+---
+
+### 161. What is the purpose of the `docker volume create` command?
+
+A. To create a new Docker container volume  
+B. To create a new Docker network  
+C. To create a new Docker image  
+D. To create a Docker service  
+
+**Correct Answer:** A. To create a new Docker container volume  
+**Explanation:** The `docker volume create` command is used to create a new volume, which can be attached to containers for persistent storage.
+
+---
+
+### 162. How can you check the health status of a running container?
+
+A. `docker status <container_name>`  
+B. `docker inspect <container_name>`  
+C. `docker ps --health`  
+D. `docker container health <container_name>`  
+
+**Correct Answer:** B. `docker inspect <container_name>`  
+**Explanation:** You can inspect a container's health status by using `docker inspect <container_name>`. If a health check is defined, the output will include the health status.
+
+---
+
+### 163. What is Docker's "bridge network"?
+
+A. A network that allows containers on different hosts to communicate securely  
+B. A network that provides communication between containers on the same host  
+C. A network that isolates containers from the host system  
+D. A network that connects containers to external networks  
+
+**Correct Answer:** B. A network that provides communication between containers on the same host  
+**Explanation:** The "bridge" network is the default network for containers, providing communication between containers on the same host.
+
+---
+
+### 164. How can you view all Docker networks on your system?
+
+A. `docker network show`  
+B. `docker network ls`  
+C. `docker networks list`  
+D. `docker network inspect`  
+
+**Correct Answer:** B. `docker network ls`  
+**Explanation:** The `docker network ls` command lists all available Docker networks on your system.
+
+---
+
+### 165. How can you stop and restart all running containers in Docker?
+
+A. `docker stop $(docker ps -q)` and `docker start $(docker ps -q)`  
+B. `docker stop all` and `docker restart all`  
+C. `docker restart --all`  
+D. `docker stop -a` and `docker start -a`  
+
+**Correct Answer:** A. `docker stop $(docker ps -q)` and `docker start $(docker ps -q)`  
+**Explanation:** The `docker ps -q` command returns the container IDs of all running containers, and using `docker stop` and `docker start` with this list stops and restarts them.
+
+---
+
+### 166. How do you limit the CPU usage of a Docker container?
+
+A. By setting the `--cpu-shares` flag when running the container  
+B. By using the `docker cpu-limit` command  
+C. By modifying the Dockerfile  
+D. Docker containers do not support CPU limits  
+
+**Correct Answer:** A. By setting the `--cpu-shares` flag when running the container  
+**Explanation:** The `--cpu-shares` flag allows you to limit the CPU share allocation for a container during runtime.
+
+---
+
+### 167. How do you remove unused Docker images from your system?
+
+A. `docker image prune`  
+B. `docker image rm --unused`  
+C. `docker prune image`  
+D. `docker system prune --images`  
+
+**Correct Answer:** A. `docker image prune`  
+**Explanation:** The `docker image prune` command removes unused images from your system, freeing up space.
+
+---
+
+### 168. How can you save a Docker image to a tar file?
+
+A. `docker save -o <file_name>.tar <image_name>`  
+B. `docker export <image_name> > <file_name>.tar`  
+C. `docker save <image_name> > <file_name>.tar`  
+D. `docker image save -f <file_name>.tar <image_name>`  
+
+**Correct Answer:** A. `docker save -o <file_name>.tar <image_name>`  
+**Explanation:** The `docker save` command with the `-o` option saves a Docker image to a tarball file.
+
+---
+
+### 169. What is the purpose of Docker’s `--network` flag when running a container?
+
+A. To specify the network mode to be used by the container  
+B. To define the type of storage for the container  
+C. To assign an IP address to the container  
+D. To specify the DNS server for the container  
+
+**Correct Answer:** A. To specify the network mode to be used by the container  
+**Explanation:** The `--network` flag is used to specify the network mode that the container should use, such as `bridge`, `host`, or a custom network.
+
+---
+
+### 170. What is the purpose of `docker info`?
+
+A. To show detailed information about a running container  
+B. To display detailed information about Docker system configuration and status  
+C. To display information about Docker images  
+D. To show logs of Docker containers  
+
+**Correct Answer:** B. To display detailed information about Docker system configuration and status  
+**Explanation:** The `docker info` command provides detailed information about the Docker system, including the number of containers, images, networks, and other Docker-related configuration.
+
+---
+
+### 171. What is the purpose of the `docker-compose up` command?
+
+A. To build and run a multi-container Docker application  
+B. To list all the containers that are part of the Docker Compose setup  
+C. To stop and remove all containers defined in the `docker-compose.yml` file  
+D. To update the images defined in the `docker-compose.yml` file  
+
+**Correct Answer:** A. To build and run a multi-container Docker application  
+**Explanation:** The `docker-compose up` command is used to start the services defined in the `docker-compose.yml` file, building images if necessary.
+
+---
+
+### 172. How can you check the logs of a running Docker container?
+
+A. `docker logs <container_name>`  
+B. `docker inspect <container_name>`  
+C. `docker ps --logs <container_name>`  
+D. `docker container logs <container_name>`  
+
+**Correct Answer:** A. `docker logs <container_name>`  
+**Explanation:** The `docker logs` command allows you to view the logs of a running container.
+
+---
+
+### 173. What is a Docker "container image"?
+
+A. A live running container  
+B. A template used to create containers  
+C. A virtual machine running within Docker  
+D. A configuration file that manages Docker containers  
+
+**Correct Answer:** B. A template used to create containers  
+**Explanation:** A Docker container image is a static file that contains the code, libraries, dependencies, and instructions for creating and running containers.
+
+---
+
+### 174. What is Docker’s "Layered File System"?
+
+A. A system that ensures containers can communicate with each other  
+B. A method of managing Docker images in layers for efficiency  
+C. A feature that allows containers to be distributed across multiple hosts  
+D. A file system used to store logs and application data  
+
+**Correct Answer:** B. A method of managing Docker images in layers for efficiency  
+**Explanation:** Docker images are built in layers, allowing for efficient reuse of components across different images and reducing the size of individual images.
+
+---
+
+### 175. How can you view the resource usage of a running container?
+
+A. `docker stats <container_name>`  
+B. `docker resource usage <container_name>`  
+C. `docker container stats <container_name>`  
+D. `docker ps --resources <container_name>`  
+
+**Correct Answer:** A. `docker stats <container_name>`  
+**Explanation:** The `docker stats` command displays real-time statistics of a running container’s resource usage, such as CPU, memory, and network usage.
+
+---
+
+### 176. What is the difference between `docker exec` and `docker attach`?
+
+A. `docker exec` is used to run new commands inside a running container, while `docker attach` connects to an existing running process  
+B. `docker exec` connects to an existing process inside a container, while `docker attach` runs new commands inside the container  
+C. `docker exec` is used to remove containers, while `docker attach` is used to restart containers  
+D. `docker exec` runs containers interactively, while `docker attach` runs containers in the background  
+
+**Correct Answer:** A. `docker exec` is used to run new commands inside a running container, while `docker attach` connects to an existing running process  
+**Explanation:** `docker exec` starts a new process inside the container, while `docker attach` connects your terminal to a running process within the container.
+
+---
+
+### 177. How do you create a Docker network?
+
+A. `docker network create <network_name>`  
+B. `docker create network <network_name>`  
+C. `docker network define <network_name>`  
+D. `docker create <network_name>`  
+
+**Correct Answer:** A. `docker network create <network_name>`  
+**Explanation:** The `docker network create` command is used to create a custom Docker network.
+
+---
+
+### 178. What command can be used to view the contents of a Docker image?
+
+A. `docker view <image_name>`  
+B. `docker image inspect <image_name>`  
+C. `docker image list <image_name>`  
+D. `docker show <image_name>`  
+
+**Correct Answer:** B. `docker image inspect <image_name>`  
+**Explanation:** The `docker image inspect` command provides detailed information about a specific image.
+
+---
+
+### 179. How can you run a Docker container in detached mode?
+
+A. `docker run -d <image_name>`  
+B. `docker run --detached <image_name>`  
+C. `docker run -i <image_name>`  
+D. `docker container start -d <image_name>`  
+
+**Correct Answer:** A. `docker run -d <image_name>`  
+**Explanation:** The `-d` flag runs the container in detached mode, meaning it runs in the background.
+
+---
+
+### 180. How can you restrict the memory usage of a Docker container?
+
+A. By using the `--memory` flag when running the container  
+B. By modifying the Dockerfile  
+C. By using the `docker config` command  
+D. By using the `docker limit` command  
+
+**Correct Answer:** A. By using the `--memory` flag when running the container  
+**Explanation:** The `--memory` flag allows you to limit the amount of memory that a container can use.
+
+---
+### 181. What is the primary function of a Docker registry?
+
+A. To store Docker containers  
+B. To store Docker images and make them accessible for pulling  
+C. To define networking rules for containers  
+D. To manage multi-container environments  
+
+**Correct Answer:** B. To store Docker images and make them accessible for pulling  
+**Explanation:** A Docker registry stores Docker images and allows users to pull those images to run containers on their local systems.
+
+---
+
+### 182. What is the command to build a Docker image from a Dockerfile?
+
+A. `docker build -t <image_name>`  
+B. `docker run -f <dockerfile_path>`  
+C. `docker create -f <dockerfile_path>`  
+D. `docker compose build <image_name>`  
+
+**Correct Answer:** A. `docker build -t <image_name>`  
+**Explanation:** The `docker build -t` command builds a Docker image using a Dockerfile and tags it with the specified `<image_name>`.
+
+---
+
+### 183. How do you list all containers (including stopped ones) in Docker?
+
+A. `docker container ps -a`  
+B. `docker ps --all`  
+C. `docker container ls -a`  
+D. `docker ps -a`  
+
+**Correct Answer:** D. `docker ps -a`  
+**Explanation:** The `docker ps -a` command lists all containers, including both running and stopped ones.
+
+---
+
+### 184. What does the `docker pull` command do?
+
+A. Downloads an image from a registry  
+B. Uploads an image to a registry  
+C. Removes an image from the local system  
+D. Builds an image from a Dockerfile  
+
+**Correct Answer:** A. Downloads an image from a registry  
+**Explanation:** The `docker pull` command downloads a Docker image from a Docker registry (such as Docker Hub) to your local machine.
+
+---
+
+### 185. How can you execute a command inside a running Docker container?
+
+A. `docker run <container_name> <command>`  
+B. `docker exec <container_name> <command>`  
+C. `docker container exec <container_name> <command>`  
+D. `docker start <container_name> <command>`  
+
+**Correct Answer:** B. `docker exec <container_name> <command>`  
+**Explanation:** The `docker exec` command allows you to execute a command inside a running Docker container.
+
+---
+
+### 186. What is the purpose of Docker's `--restart` flag when running a container?
+
+A. To automatically restart the container if it crashes or stops  
+B. To restart the Docker service  
+C. To restart the container at a scheduled time  
+D. To prevent the container from restarting  
+
+**Correct Answer:** A. To automatically restart the container if it crashes or stops  
+**Explanation:** The `--restart` flag ensures that a container is automatically restarted if it crashes or is stopped under certain conditions (e.g., `always` or `unless-stopped`).
+
+---
+
+### 187. How can you remove all stopped containers in Docker?
+
+A. `docker rm $(docker ps -aq)`  
+B. `docker container prune`  
+C. `docker container remove all`  
+D. `docker rm --all`  
+
+**Correct Answer:** B. `docker container prune`  
+**Explanation:** The `docker container prune` command removes all stopped containers from the system.
+
+---
+
+### 188. How do you update the version of a Docker image?
+
+A. By modifying the Dockerfile and rebuilding the image  
+B. By using `docker upgrade <image_name>`  
+C. By pulling the latest image version from the registry  
+D. Docker images cannot be updated once created  
+
+**Correct Answer:** A. By modifying the Dockerfile and rebuilding the image  
+**Explanation:** You update the version of an image by modifying its Dockerfile and rebuilding the image with `docker build`.
+
+---
+
+### 189. What does the `docker-compose down` command do?
+
+A. Stops and removes all containers defined in the `docker-compose.yml` file  
+B. Starts all containers defined in the `docker-compose.yml` file  
+C. Removes the images defined in the `docker-compose.yml` file  
+D. Builds the images defined in the `docker-compose.yml` file  
+
+**Correct Answer:** A. Stops and removes all containers defined in the `docker-compose.yml` file  
+**Explanation:** The `docker-compose down` command stops and removes all containers, networks, and volumes defined in the `docker-compose.yml` file.
+
+---
+
+### 190. What is the command to stop a running Docker container?
+
+A. `docker stop <container_name>`  
+B. `docker container stop <container_name>`  
+C. `docker terminate <container_name>`  
+D. `docker kill <container_name>`  
+
+**Correct Answer:** A. `docker stop <container_name>`  
+**Explanation:** The `docker stop` command is used to stop a running Docker container gracefully.
+
+---
+
+### 191. What does the `docker cp` command do?
+
+A. Copies files between Docker containers  
+B. Copies files from the host system to a container or vice versa  
+C. Copies Docker images between registries  
+D. Copies the configuration of a container to a different container  
+
+**Correct Answer:** B. Copies files from the host system to a container or vice versa  
+**Explanation:** The `docker cp` command allows you to copy files between a Docker container and the local host system.
+
+---
+
+### 192. How can you change the environment variables of a running container?
+
+A. By modifying the Dockerfile and rebuilding the container  
+B. By using the `docker exec` command to change environment variables inside the container  
+C. By using the `docker setenv` command  
+D. By setting the `--env` flag when running the container  
+
+**Correct Answer:** A. By modifying the Dockerfile and rebuilding the container  
+**Explanation:** The environment variables can be changed by modifying the Dockerfile and rebuilding the image. You cannot directly modify environment variables of a running container without restarting it.
+
+---
+
+### 193. What does the `docker exec -it <container_name> bash` command do?
+
+A. Starts a new container and runs the `bash` shell  
+B. Connects to a container’s running `bash` shell interactively  
+C. Starts a container in the background  
+D. Installs `bash` inside a container  
+
+**Correct Answer:** B. Connects to a container’s running `bash` shell interactively  
+**Explanation:** The `docker exec -it` command is used to run a command (`bash` in this case) interactively inside a running container.
+
+---
+
+### 194. What is the purpose of Docker's "Dockerfile"?
+
+A. To store the configuration for a Docker container  
+B. To define the steps needed to build a Docker image  
+C. To execute commands inside a container  
+D. To manage Docker networks  
+
+**Correct Answer:** B. To define the steps needed to build a Docker image  
+**Explanation:** A Dockerfile contains a set of instructions for building a Docker image, such as which base image to use and how to install dependencies.
+
+---
+
+### 195. How can you specify port mapping for a Docker container?
+
+A. By using the `--port` flag  
+B. By using the `-p` flag during container creation  
+C. By modifying the Dockerfile  
+D. By editing the container configuration file  
+
+**Correct Answer:** B. By using the `-p` flag during container creation  
+**Explanation:** The `-p` flag is used to specify port mapping between the host and the container when running a Docker container, such as `docker run -p 8080:80`.
+
+---
+
+### 196. How can you ensure a Docker container always restarts unless explicitly stopped?
+
+A. By using the `--restart always` flag  
+B. By using the `--restart on-failure` flag  
+C. By using the `docker restart` command  
+D. By modifying the `docker-compose.yml` file  
+
+**Correct Answer:** A. By using the `--restart always` flag  
+**Explanation:** The `--restart always` flag ensures that a Docker container will always restart unless it is explicitly stopped.
+
+---
+
+### 197. What is the default network mode for a container?
+
+A. Host  
+B. Bridge  
+C. None  
+D. Overlay  
+
+**Correct Answer:** B. Bridge  
+**Explanation:** The default network mode for a Docker container is "bridge," which means the container is connected to a virtual bridge network on the host.
+
+---
+
+### 198. How can you increase the CPU and memory limits for a Docker container?
+
+A. By modifying the Dockerfile and rebuilding the image  
+B. By using the `--cpu` and `--memory` flags when running the container  
+C. By editing the container’s resource configuration in Docker Compose  
+D. By running the `docker limit` command  
+
+**Correct Answer:** B. By using the `--cpu` and `--memory` flags when running the container  
+**Explanation:** You can limit the CPU and memory resources of a container by using the `--cpu` and `--memory` flags during container creation.
+
+---
+
+### 199. How do you view the Docker daemon logs?
+
+A. `docker daemon logs`  
+B. `docker logs daemon`  
+C. `journalctl -u docker` (on systems using systemd)  
+D. `docker system logs`  
+
+**Correct Answer:** C. `journalctl -u docker` (on systems using systemd)  
+**Explanation:** On systems using `systemd`, the Docker daemon logs can be viewed using `journalctl -u docker`.
+
+---
+
+### 200. How do you limit the number of restart attempts for a Docker container?
+
+A. By using the `--restart on-failure:max-retries` flag  
+B. By modifying the Dockerfile  
+C. By using the `--max-retries` flag during container run  
+D. By modifying the `docker-compose.yml` file  
+
+**Correct Answer:** A. By using the `--restart on-failure:max-retries` flag  
+**Explanation:** You can specify the maximum number of restart attempts by using the `--restart on-failure:max-retries` flag when running the container.
+
+---
