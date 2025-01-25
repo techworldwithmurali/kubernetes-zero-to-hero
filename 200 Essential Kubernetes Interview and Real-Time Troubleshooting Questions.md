@@ -716,10 +716,6 @@ What is the purpose of the `kubectl top` command?
 
 ---
 
-Here is the continuation of the Kubernetes question set:  
-
----
-
 ### 66. Question:  
 Which of the following is a key difference between `StatefulSet` and `Deployment` in Kubernetes?  
 - **A. StatefulSet provides persistent storage for pods**  
@@ -885,10 +881,6 @@ What is the purpose of a `PersistentVolumeClaim` (PVC) in Kubernetes?
 
 ---
 
-Here's the next set of questions continuing from the previous ones:
-
----
-
 ### 81. Question:  
 Which of the following commands can be used to get detailed information about a specific pod in a Kubernetes cluster?  
 - **A. kubectl describe pod <pod-name>**  
@@ -1051,10 +1043,6 @@ How can you ensure that a pod in Kubernetes is scheduled to a specific node?
 - **D. By manually specifying the node in the pod specification**  
 **Correct Answer:** **A. By using node affinity or node selectors**  
 **Explanation:** Node affinity and node selectors allow you to constrain which nodes your pod can be scheduled on based on labels or other criteria.  
-
----
-
-Here is the next continuation of the Kubernetes question set:
 
 ---
 
