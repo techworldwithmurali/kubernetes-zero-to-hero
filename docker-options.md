@@ -2393,5 +2393,3 @@ D. By modifying the `docker-compose.yml` file
 
 **Correct Answer:** A. By using the `--restart on-failure:max-retries` flag  
 **Explanation:** You can specify the maximum number of restart attempts by using the `--restart on-failure:max-retries` flag when running the container.
-
----
