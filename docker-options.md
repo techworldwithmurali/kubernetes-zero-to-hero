@@ -1,7 +1,5 @@
 ### 100 Unique Docker Troubleshooting and Interview Questions
 
-#### Docker Basics
-
 1. **What is the primary purpose of Docker?**  
    **A.** Manage hardware resources  
    **B.** Automate software deployments using containers  
@@ -42,7 +40,7 @@
    **C.** docker rm -a  
    **D.** docker clean  
    **Correct Answer:** A. docker container prune  
-   **Explanation:** The `docker container prune` command removes all stopped containers.
+   **Explanation:** The "docker container prune" command removes all stopped containers.
 
 6. **What is the difference between `docker stop` and `docker kill`?**  
    **A.** `docker stop` kills processes, while `docker kill` sends termination signals  
