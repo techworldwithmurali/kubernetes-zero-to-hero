@@ -1,3 +1,9 @@
+### Linux Command Guide for DevOps Engineers and System Administrators
+
+**Description:**
+
+- A practical guide for DevOps Engineers and System Administrators, this Linux Command Guide covers essential commands for system management, troubleshooting, and automation.
+- Perfect for students and professionals, it offers easy-to-follow instructions on file handling, user management, system monitoring, and cloud-related tasks, helping you boost your command-line skills for real-world applications.
 
 | **Category**                  | **Command**            | **Description**                                                                 |
 |-------------------------------|------------------------|---------------------------------------------------------------------------------|
