@@ -1,3 +1,5 @@
+### Kubernetes Troubleshooting 101: Quick Command Reference for Resolving Issues
+
 | **Category**                 | **Command**                                                                                           | **Description**                                                                                      |
 |------------------------------|-------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
 | **Cluster Health**            | `kubectl cluster-info`                                                                                | Get the cluster info and check control plane accessibility.                                          |
