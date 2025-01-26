@@ -1,6 +1,15 @@
-
-| **Kubernetes Object**       | **Command**                                             | **Description**                                                              |
-|-----------------------------|---------------------------------------------------------|------------------------------------------------------------------------------|
+| **Kubernetes Object**       | **Command**                          | **Description**                               |
+|--------------------|--------------------------------------|-----------------------------------------------|
+| **Node Commands**   | `kubectl get nodes`                  | List all nodes in the cluster                |
+|                    | `kubectl describe node <node-name>`  | Get detailed info about a specific node       |
+|                    | `kubectl cordon <node-name>`         | Mark node as unschedulable                    |
+|                    | `kubectl uncordon <node-name>`       | Mark node as schedulable                      |
+| **Cluster Commands**| `kubectl cluster-info`               | Display cluster information                  |
+|                    | `kubectl get clusterroles`           | List all cluster roles                       |
+|                    | `kubectl describe clusterrole <role-name>` | Describe a specific cluster role              |
+| **Cluster Connect**    | `kubectl config use-context <context-name>`                                 | Switch to a specific cluster context               |
+|                       | `kubectl config get-contexts`                                               | List all available contexts in the kubeconfig file |
+| **EKS Kubeconfig**     | `aws eks update-kubeconfig --region <region> --name <cluster-name>`         | Updates the kubeconfig file for AWS EKS clusters   |
 | **Pod**                      | `kubectl get pods`                                      | Lists all pods in the current namespace.                                      |
 |                             | `kubectl describe pod <pod-name>`                       | Provides detailed information about the specified pod.                        |
 |                             | `kubectl logs <pod-name>`                               | Fetches the logs of the specified pod.                                        |
