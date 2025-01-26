@@ -209,3 +209,68 @@
 |                               | `curl`               | Transfer data from or to a server.                                             |
 |                               | `nmap`               | Perform network scanning and port discovery.                                   |
 |                               | `ethtool`            | Display or change Ethernet device settings.                                    |
+| **Service Management**         | `systemctl start`     | Start a service.                                                               |
+|                               | `systemctl stop`      | Stop a service.                                                                |
+|                               | `systemctl restart`   | Restart a service.                                                             |
+|                               | `systemctl status`    | Check the status of a service.                                                 |
+|                               | `systemctl enable`    | Enable a service to start on boot.                                             |
+|                               | `systemctl disable`   | Disable a service from starting on boot.                                       |
+|                               | `service start`       | Start a service (legacy system).                                               |
+|                               | `service stop`        | Stop a service (legacy system).                                                |
+|                               | `service restart`     | Restart a service (legacy system).                                             |
+| **Disk Management**            | `fdisk -l`            | List all partitions and block devices.                                         |
+|                               | `parted`              | Interactive partition editor.                                                  |
+|                               | `mkfs.ext4`           | Create an ext4 file system.                                                    |
+|                               | `mkfs.xfs`            | Create an XFS file system.                                                     |
+|                               | `mkfs.btrfs`          | Create a Btrfs file system.                                                   |
+|                               | `mount -o loop`       | Mount a file as a loop device.                                                 |
+|                               | `swapoff`             | Disable swap space.                                                            |
+|                               | `swapon`              | Enable swap space.                                                             |
+| **Firewall Management**        | `ufw`                 | Uncomplicated Firewall management tool.                                        |
+|                               | `iptables`            | A utility for configuring the Linux kernel firewall.                           |
+|                               | `firewalld`           | Firewall daemon used to manage firewall rules dynamically.                      |
+|                               | `firewall-cmd`        | Manage firewalld firewall rules.                                               |
+|                               | `systemctl restart firewalld` | Restart the firewall service.                                         |
+| **System Monitoring**          | `iostat`              | Display CPU and I/O statistics.                                                |
+|                               | `mpstat`              | Display CPU performance statistics.                                            |
+|                               | `watch`               | Execute a command repeatedly, showing output at regular intervals.             |
+|                               | `uptime`              | Show system uptime and load average.                                           |
+|                               | `lsof`                | List open files and associated processes.                                      |
+|                               | `dmesg`               | Display kernel buffer messages.                                                |
+|                               | `htop`                | Interactive process viewer with real-time updates.                             |
+|                               | `top`                 | Real-time system monitor for processes and resource usage.                     |
+| **Logging and Auditing**       | `journalctl`          | Display logs from the systemd journal.                                         |
+|                               | `logrotate`           | Manage log file rotation.                                                      |
+|                               | `ausearch`            | Search audit logs for specific events or patterns.                             |
+| **System Updates**             | `yum update`          | Update all packages on a Red Hat-based system.                                 |
+|                               | `dnf update`          | Update all packages on a Fedora-based system.                                  |
+|                               | `apt-get update`      | Update package list on a Debian-based system.                                  |
+|                               | `apt-get upgrade`     | Upgrade all installed packages on a Debian-based system.                       |
+|                               | `pacman -Syu`         | Update packages on an Arch-based system.                                       |
+| **System Reboot and Shutdown** | `reboot`              | Reboot the system.                                                             |
+|                               | `shutdown`            | Shut down the system.                                                          |
+|                               | `halt`                | Halt the system.                                                               |
+|                               | `poweroff`            | Power off the system.                                                          |
+| **Backup & Restore**           | `rsync`               | Sync files and directories between locations.                                  |
+|                               | `dd`                  | Copy and convert files, commonly used for creating disk images.                |
+|                               | `tar -cvf`            | Create a tar archive of files.                                                 |
+|                               | `tar -xvf`            | Extract a tar archive.                                                         |
+| **User & Group Management**    | `adduser`             | Add a new user (Debian-based systems).                                         |
+|                               | `deluser`             | Delete a user (Debian-based systems).                                          |
+|                               | `usermod -aG`         | Add a user to a group.                                                         |
+|                               | `gpasswd`             | Administer `/etc/group` and group password files.                              |
+|                               | `passwd -l`           | Lock a user’s account.                                                         |
+| **Advanced File Operations**   | `rsync -avz`          | Archive and compress files using rsync.                                        |
+|                               | `cp -r`               | Copy directories and their contents recursively.                               |
+|                               | `mv -i`               | Move or rename files interactively.                                            |
+|                               | `ln -s`               | Create a symbolic link to a file.                                              |
+|                               | `tar -czvf`           | Create a compressed archive using gzip.                                        |
+|                               | `zip -r`              | Compress directories into a .zip archive.                                      |
+|                               | `find / -name`        | Search for files with a specific name.                                         |
+| **Performance Tuning**         | `sysctl`              | Configure kernel parameters at runtime.                                        |
+|                               | `ulimit`              | Set user process resource limits.                                              |
+|                               | `nice`                | Set process priority for a command.                                            |
+|                               | `renice`              | Change the priority of a running process.                                      |
+| **Virtualization**             | `virt-manager`        | Manage virtual machines using libvirt.                                         |
+|                               | `vagrant`             | Manage virtual machine environments for development.                           |
+|                               | `qemu`                | Perform hardware emulation for virtual machines.                               |
