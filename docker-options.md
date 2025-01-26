@@ -14,7 +14,7 @@
    **C.** docker info  
    **D.** docker config  
    **Correct Answer:** B. docker version  
-   **Explanation:** `docker version` provides detailed version information for the Docker client and server.
+   **Explanation:** **docker version** provides detailed version information for the Docker client and server.
 
 3. **What is the default storage driver for Docker on Linux?**  
    **A.** overlay2  
