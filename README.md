@@ -156,23 +156,15 @@
 - Node Affinity and Node Anti-Affinity in Kubernetes
 - Lab Session - Implementing Node Affinity and Node Anti-Affinity
 
-## Day 19 - Kubernetes Project 1
-
-- Deploying an Application to EKS with an Image from DockerHub
-
-## Day 20 - Kubernetes Project 2
-
-- Deploying an Application to EKS with an Image from AWS ECR
-
-## Day 21 - Kubernetes Project 3
+## Day 19 - Kubernetes Project
 
 - Deploying Argo CD on Kubernetes
 
-## Day 22 - EKS Upgrade Process
+## Day 20 - EKS Upgrade Process
 
 - Preparing for EKS Upgrade
 - Lab Session - Upgrading AWS EKS
 
-## Day 23 - Exploring Various Methods for Creating AWS EKS Clusters
+## Day 21 - Exploring Various Methods for Creating AWS EKS Clusters
 
 - Setting Up AWS EKS with eksctl
