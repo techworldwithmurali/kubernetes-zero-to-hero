@@ -181,16 +181,3 @@
 ## Day 23 - Exploring Various Methods for Creating AWS EKS Clusters
 
 - Setting Up AWS EKS with eksctl
-
-## Day 24 - Kubernetes Troubleshooting Part 1
-
-- Container image pull fails with 'image not found' or 'access denied' errors: How to troubleshoot and resolve this issue
-- Liveness and readiness probe failed
-- Connection refused
-- Service not accessible externally: How to troubleshoot?
-
-## Day 25 - Kubernetes Troubleshooting Part 2
-- Disk pressure / Node out of disk
-- Node is Not Ready: How to investigate?
-- Ingress resource not being created
-- Kubelet NotReady
