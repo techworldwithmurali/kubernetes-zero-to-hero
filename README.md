@@ -1,10 +1,5 @@
 #### Complete Kubernetes Course: Beginner to Advanced with Hands-On Projects
 
-**Course Description:**  
-- This comprehensive 25-day course will teach you how to deploy, manage, and troubleshoot Kubernetes clusters on AWS, from foundational concepts to advanced techniques.
-- You’ll start with the basics, progressing through the installation of essential tools, setting up Amazon EKS, and deploying applications.
-- As you advance, you'll dive into topics such as scaling, networking, and monitoring.
-
 ## Day 1 - Kubernetes Overview
 
 - What is Kubernetes
